@@ -1,0 +1,135 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSubmit(submitForm)" #submitForm="ngForm" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        name="email"
+        matInput
+        ngModel
+        placeholder="E-mail"
+        #emailInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="emailInput.invalid">please enter valid mail</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        name="password"
+        matInput
+        ngModel
+        placeholder="Password"
+        #passwordInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="passwordInput.invalid">password not valid</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        name="passwordconfirm"
+        matInput
+        ngModel
+        placeholder="Password confirm"
+        #passwordInputConfirm="ngModel"
+        required
+      />
+      <mat-error *ngIf="passwordInput !== passwordInputConfirm"
+        >password not match</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        name="id"
+        matInput
+        ngModel
+        placeholder="id"
+        #idInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="idInput.invalid">please enter valid id</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="
+        passwordInput.invalid || emailInput.invalid || idInput.invalid
+      "
+    >
+      Next
+    </button>
+  </form>
+</mat-card>
+<mat-card *ngIf="next">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form
+    (submit)="onSubmit2($event, submitForm2)"
+    #submitForm2="ngForm"
+    *ngIf="!isLoading"
+  >
+    <mat-form-field>
+      <input
+        name="city"
+        matInput
+        ngModel
+        placeholder="city"
+        #cityInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="cityInput.invalid">please enter valid city</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        name="street"
+        matInput
+        ngModel
+        placeholder="street"
+        #streetInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="streetInput.invalid"
+        >please enter valid streeet</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        name="name"
+        matInput
+        ngModel
+        placeholder="name"
+        #nameInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="nameInput.invalid">please enter valid name</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        name="lastName"
+        matInput
+        ngModel
+        placeholder="lastName"
+        #lastNameInput="ngModel"
+        required
+      />
+      <mat-error *ngIf="lastNameInput.invalid"
+        >please enter valid lastName</mat-error
+      >
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      type="submit"
+      [disabled]="
+        cityInput.invalid ||
+        streetInput.invalid ||
+        nameInput.invalid ||
+        lastNameInput.invalid
+      "
+    >
+      register
+    </button>
+  </form>
+</mat-card>

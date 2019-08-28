@@ -7,7 +7,9 @@ const connectDB = require('./config/db');
 
 var indexRouter = require('./routes/index');
 var customersRouter = require('./routes/customers');
-var productsRouter = require('./routes/products');
+var authRouter = require('./routes/auth');
+
+// var productsRouter = require('./routes/products');
 
 var app = express();
 app.use(cors());
@@ -16,13 +18,15 @@ app.use(cors());
 connectDB();
 
 app.use(logger('dev'));
-app.use(express.json());
+app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/customers', customersRouter);
-app.use('/products', productsRouter);
+app.use('/auth', authRouter);
+
+// app.use('/products', productsRouter);
 
 module.exports = app;
