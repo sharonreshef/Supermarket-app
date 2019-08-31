@@ -11,6 +11,7 @@ var authRouter = require('./routes/auth');
 var categoriesRouter = require('./routes/categories');
 var productsRouter = require('./routes/products');
 var searchRouter = require('./routes/search');
+var cartsRouter = require('./routes/carts');
 
 var app = express();
 app.use(cors());
@@ -30,5 +31,6 @@ app.use('/auth', authRouter);
 app.use('/categories', categoriesRouter);
 app.use('/products', productsRouter);
 app.use('/search', searchRouter);
+app.use('/carts', cartsRouter);
 
 module.exports = app;
