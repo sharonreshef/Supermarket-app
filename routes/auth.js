@@ -36,7 +36,6 @@ router.post(
 
     try {
       let customer = await Customer.findOne({ email });
-      console.log(customer);
 
       if (!customer) {
         return res.status(400).send('Invalid Credentials');

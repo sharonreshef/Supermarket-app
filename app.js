@@ -8,8 +8,9 @@ const connectDB = require('./config/db');
 var indexRouter = require('./routes/index');
 var customersRouter = require('./routes/customers');
 var authRouter = require('./routes/auth');
-
-// var productsRouter = require('./routes/products');
+var categoriesRouter = require('./routes/categories');
+var productsRouter = require('./routes/products');
+var searchRouter = require('./routes/search');
 
 var app = express();
 app.use(cors());
@@ -26,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/customers', customersRouter);
 app.use('/auth', authRouter);
-
-// app.use('/products', productsRouter);
+app.use('/categories', categoriesRouter);
+app.use('/products', productsRouter);
+app.use('/search', searchRouter);
 
 module.exports = app;
