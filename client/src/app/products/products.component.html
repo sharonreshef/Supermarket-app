@@ -1,0 +1,9 @@
+<div class="products">
+  <!-- <app-type-filter></app-type-filter> -->
+  <div
+    *ngFor="let product of this.store.filterdProducts"
+    class="product-wrapper"
+  >
+    <app-product [product]="product"></app-product>
+  </div>
+</div>

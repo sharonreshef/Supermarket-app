@@ -1,0 +1,22 @@
+.product {
+  max-width: 100px;
+  cursor: pointer;
+}
+
+.img-container {
+  width: 50px;
+  margin-right: 24px;
+}
+
+.img-container img {
+  max-width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.grow {
+  flex: 1;
+}
