@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  isAuth: boolean = false;
+
+  constructor(private authService: AuthService) {}
+
+  ngDoCheck() {
+    this.isAuth = this.authService.isAuth();
+  }
 
   ngOnInit() {}
 }

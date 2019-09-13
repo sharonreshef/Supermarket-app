@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -21,6 +21,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { ProductsComponent } from './products/products.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProductComponent } from './product/product.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,14 @@ import { ProductComponent } from './product/product.component';
     RegisterComponent,
     ProductsComponent,
     HomePageComponent,
-    ProductComponent
+    ProductComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,

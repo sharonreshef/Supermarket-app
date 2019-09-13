@@ -47,5 +47,13 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  isAuth() {
+    return !!localStorage.getItem('token');
+  }
+
+  getIsAdmin() {
+    return localStorage.getItem('isAdmin') === 'true';
+  }
   constructor(private http: HttpClient) {}
 }

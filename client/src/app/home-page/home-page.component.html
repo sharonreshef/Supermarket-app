@@ -1,4 +1,30 @@
-<mat-card><app-login></app-login></mat-card>
+<mat-card>
+  <ng-template [ngIf]="isAuth">
+    <!-- <div class="pt-2">
+      <button
+        type="button"
+        mdbBtn
+        color="blue"
+        (click)="loginModal()"
+        mdbWavesEffect
+      >
+        Login <i class="fas fa-user-alt"></i>
+      </button>
+      <button
+        type="button"
+        mdbBtn
+        color="primary"
+        outline="true"
+        (click)="registerModal()"
+        mdbWavesEffect
+      >
+        Register <mdb-icon fas icon="download" class="ml-1"></mdb-icon>
+      </button>
+    </div> -->
+    <div><button>Start Shopping</button></div>
+  </ng-template>
+  <app-login></app-login>
+</mat-card>
 <mat-card>
   <div><p>Why you shuold buy from our store</p></div>
 </mat-card>
