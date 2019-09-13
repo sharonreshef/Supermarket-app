@@ -43,5 +43,9 @@ export class AuthService {
         console.log(response);
       });
   }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
   constructor(private http: HttpClient) {}
 }

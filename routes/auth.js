@@ -15,7 +15,7 @@ router.get('/', auth, async (req, res) => {
     }).select('-password');
     res.json(customer);
   } catch (err) {
-    res.status(500).send('server errorrrrr');
+    res.status(500).send('server error');
   }
 });
 
@@ -41,9 +41,10 @@ router.post(
         return res.status(400).send('Invalid Credentials');
       } else {
         const payload = {
-          customer: {
-            id: customer.customerID
-          }
+          email: customer.email,
+          customerID: customer.customerID,
+          isAdmin: customer.isAdmin,
+          orders: customer.orders
         };
 
         const isMatch = await bcrypt.compare(password, customer.password);
@@ -60,7 +61,7 @@ router.post(
           },
           (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({ token, payload });
           }
         );
       }

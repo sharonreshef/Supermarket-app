@@ -31,7 +31,15 @@ const CustomerSchema = new mongoose.Schema({
   },
   isAdmin: {
     type: Boolean
-  }
+  },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    }
+  ]
 });
 
-module.exports = Customer = mongoose.model('customer', CustomerSchema);
+// module.exports = Customer = mongoose.model('customer', CustomerSchema);
+const Customer = mongoose.model('Customer', CustomerSchema);
+module.exports = Customer;

@@ -4,9 +4,9 @@ const Category = require('../models/Category');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const categories = await Category.find();
+  const categories = await Category.find().exec();
 
-  res.json(categories);
+  res.send(categories);
 });
 
 module.exports = router;

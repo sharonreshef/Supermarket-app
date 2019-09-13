@@ -16,13 +16,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './auth/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './token.interceptor';
 import { ProductsComponent } from './products/products.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProductComponent } from './product/product.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, ProductsComponent, HomePageComponent, ProductComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProductsComponent,
+    HomePageComponent,
+    ProductComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -38,7 +46,13 @@ import { ProductComponent } from './product/product.component';
     MatButtonModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
