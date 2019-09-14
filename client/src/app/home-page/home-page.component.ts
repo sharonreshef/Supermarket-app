@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { StoreService } from '../store.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,12 +9,16 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HomePageComponent implements OnInit {
   isAuth: boolean = false;
+  numOfProducts: number;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private store: StoreService) {}
 
   ngDoCheck() {
     this.isAuth = this.authService.isAuth();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.getProducts();
+    this.numOfProducts = this.store.currentState.numOfProducts;
+  }
 }

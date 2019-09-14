@@ -1,4 +1,4 @@
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner>
 <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
   <mat-form-field>
     <input
@@ -39,4 +39,85 @@
   >
     Register
   </button>
-</form>
+</form> -->
+
+<div class="mx-3">
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <div class="md-form mb-5">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <input
+        formControlName="username"
+        type="text"
+        id="defaultForm-username"
+        class="form-control validate"
+        mdbInput
+      />
+      <label data-error="wrong" data-success="right" for="defaultForm-username"
+        >Your username</label
+      >
+      <mdb-error
+        *ngIf="
+          loginForm.get('username').touched &&
+          loginForm.get('username').hasError('required')
+        "
+        >Required Field</mdb-error
+      >
+      <mdb-error
+        *ngIf="
+          loginForm.get('username').touched &&
+          loginForm.get('username').hasError('minlength')
+        "
+        >Not valid username</mdb-error
+      >
+    </div>
+
+    <div class="md-form mb-4">
+      <i class="fas fa-lock prefix grey-text"></i>
+      <input
+        formControlName="password"
+        type="password"
+        id="defaultForm-password"
+        class="form-control validate"
+        mdbInput
+      />
+      <label data-error="wrong" data-success="right" for="defaultForm-password"
+        >Your password</label
+      >
+      <mdb-error
+        *ngIf="
+          loginForm.get('password').touched &&
+          loginForm.get('password').hasError('required')
+        "
+        >Password is required!</mdb-error
+      >
+      <mdb-error
+        *ngIf="
+          loginForm.get('password').touched &&
+          loginForm.get('password').hasError('minlength')
+        "
+        >Your password must be at least 6 symbols</mdb-error
+      >
+    </div>
+    <div class=" d-flex justify-content-center">
+      <button
+        [disabled]="loginForm.invalid"
+        mdbBtn
+        color="default"
+        class="waves-light"
+        mdbWavesEffect
+      >
+        Login
+      </button>
+      <button
+        type="button"
+        mdbBtn
+        color="primary"
+        outline="true"
+        [routerLink]="['/register']"
+        class="waves-light"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>

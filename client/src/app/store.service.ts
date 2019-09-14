@@ -7,6 +7,7 @@ import { CategoryService } from './category.service';
 
 export interface IState {
   products: Product[];
+  numOfProducts: number;
   categories: Category[];
   selectedProduct: Product;
   selectedCategory: string;
@@ -16,7 +17,8 @@ const initialState: IState = {
   products: [],
   selectedProduct: null,
   categories: [],
-  selectedCategory: null
+  selectedCategory: null,
+  numOfProducts: 0
 };
 
 @Injectable({
@@ -43,9 +45,11 @@ export class StoreService {
   getProducts() {
     this.productService.getProductsFromServer().subscribe(products => {
       this.setState({
-        products
+        products,
+        numOfProducts: products.length
       });
-      console.log(this.products);
+      // console.log(this.products);
+      // console.log(this.currentState.numOfProducts);
     });
   }
 

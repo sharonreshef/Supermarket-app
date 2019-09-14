@@ -1,1 +1,37 @@
-<p>navigation works!</p>
+<mdb-navbar
+  SideClass="navbar navbar-expand-lg navbar-dark bg-primary"
+  [containerInside]="false"
+>
+  <mdb-navbar-brand>
+    <a class="logo navbar-brand" routerLink="/"
+      ><strong>Sharon's store</strong></a
+    >
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav ">
+      <ng-template [ngIf]="isAdmin">
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a routerLink="admin/create" class="nav-link">Add product</a>
+        </li>
+      </ng-template>
+
+      <ng-template [ngIf]="isAuth">
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a routerLink="products" class="nav-link">products</a>
+        </li>
+        <!-- <li class="nav-item waves-light" mdbWavesEffect>
+          <a routerLink="cart" class="nav-link">Cart</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a routerLink="order" class="nav-link">Orders</a>
+        </li> -->
+        <li class="nav-item waves-light ml-auto float-right" mdbWavesEffect>
+          <a class="nav-link">Welcome, {{ username }}</a>
+        </li>
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a (click)="logout()" class="nav-link">Logout</a>
+        </li>
+      </ng-template>
+    </ul>
+  </links>
+</mdb-navbar>

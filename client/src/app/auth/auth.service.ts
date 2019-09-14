@@ -2,11 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { LoginData } from './login-data.model';
+import { Router } from '@angular/router';
+import { LoginModel } from '../core/models/auth/login.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  constructor(
+    private http: HttpClient,
+    // private tostr: ToastrService,
+    private router: Router
+  ) {}
+
   createUser(
     email: string,
     password: string,
@@ -32,20 +40,18 @@ export class AuthService {
       });
   }
 
-  loginUser(email: string, password: string) {
-    const loginData: LoginData = {
-      email: email,
-      password: password
-    };
-    this.http
-      .post('http://localhost:3000/auth', loginData)
-      .subscribe(response => {
-        console.log(response);
-      });
+  login(body: LoginModel) {
+    this.http.post('http://localhost:3000/auth', body).subscribe(response => {
+      console.log(response);
+    });
   }
 
   getToken() {
     return localStorage.getItem('token');
+  }
+
+  getUsername() {
+    return localStorage.getItem('username');
   }
 
   isAuth() {
@@ -55,5 +61,10 @@ export class AuthService {
   getIsAdmin() {
     return localStorage.getItem('isAdmin') === 'true';
   }
-  constructor(private http: HttpClient) {}
+
+  logout() {
+    localStorage.clear();
+    // this.tostr.success('You ware logged out!');
+    this.router.navigate(['']);
+  }
 }

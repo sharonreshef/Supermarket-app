@@ -1,6 +1,3 @@
-mat-card {
-  width: 400px;
-  height: 200px;
-  display: inline-flex;
-  margin: 2px;
+.container {
+  padding-top: 100px;
 }
