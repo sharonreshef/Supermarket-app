@@ -22,26 +22,27 @@ router.get('/', auth, async (req, res) => {
 // Authenticate user and get token
 router.post(
   '/',
-  [
-    check('email', 'please include a valid email').isEmail(),
-    check('password', 'Password is requierd').exists()
-  ],
+  // [
+  //   check('email', 'please include a valid email').isEmail(),
+  //   check('password', 'Password is requierd').exists()
+  // ],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { email, password } = req.body;
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
+    const { username, password } = req.body;
 
     try {
-      let customer = await Customer.findOne({ email });
+      console.log(req);
+      let customer = await Customer.findOne({ email: username });
 
       if (!customer) {
         return res.status(400).send('Invalid Credentials');
       } else {
         const payload = {
           email: customer.email,
+          username: customer.firstName,
           customerID: customer.customerID,
           isAdmin: customer.isAdmin,
           orders: customer.orders

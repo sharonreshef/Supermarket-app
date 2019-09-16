@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { LoginModel } from 'src/app/core/models/auth/login.model';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login',

@@ -1,4 +1,4 @@
-export interface AuthData {
+export interface RegisterModel {
   email: string;
   password: string;
   customerID: number;

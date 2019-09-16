@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,12 +8,17 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  next = false;
+  next: Boolean = false;
   formValues1;
   formValues2;
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
+  onSubmit(e, form: NgForm) {
+    e.preventDefault();
+    console.log(form.value.id);
+    this.formValues1 = form.value;
+    // this.authService.checkID(form.value.id);
+    // this.next = this.authService.getUniqe();
+    // console.log(this.next);
     this.formValues1 = form.value;
     if (form.value.password !== form.value.passwordconfirm) {
       alert('must be same password');

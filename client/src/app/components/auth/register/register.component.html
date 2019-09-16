@@ -1,6 +1,10 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form (submit)="onSubmit(submitForm)" #submitForm="ngForm" *ngIf="!isLoading">
+  <form
+    (submit)="onSubmit($event, submitForm)"
+    #submitForm="ngForm"
+    *ngIf="!isLoading"
+  >
     <mat-form-field>
       <input
         name="email"
@@ -34,9 +38,7 @@
         #passwordInputConfirm="ngModel"
         required
       />
-      <mat-error *ngIf="passwordInput !== passwordInputConfirm"
-        >password not match</mat-error
-      >
+      <!-- <mat-error *ngIf="passwordInput.">password not match</mat-error> -->
     </mat-form-field>
     <mat-form-field>
       <input
@@ -55,10 +57,13 @@
       color="accent"
       type="submit"
       [disabled]="
-        passwordInput.invalid || emailInput.invalid || idInput.invalid
+        passwordInput.invalid ||
+        emailInput.invalid ||
+        idInput.invalid ||
+        passwordInputConfirm.invalid
       "
     >
-      Next
+      continue
     </button>
   </form>
 </mat-card>

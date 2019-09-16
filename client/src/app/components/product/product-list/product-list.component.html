@@ -1,15 +1,8 @@
-<!-- <div class="products">
-  <app-type-filter></app-type-filter>
-  <div
-    *ngFor="let product of this.store.filterdProducts"
-    class="product-wrapper"
-  >
-    <app-card [product]="product"></app-card>
-  </div>
-</div> -->
-
 <div class="card-deck">
-  <app-card *ngFor="let product of products" [product]="product"></app-card>
+  <app-card
+    *ngFor="let product of this.store.filterdProducts"
+    [product]="product"
+  ></app-card>
 </div>
 
 <!-- <pagination-controls

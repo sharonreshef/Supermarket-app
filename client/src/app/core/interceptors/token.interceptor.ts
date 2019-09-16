@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 // import { ToastrService } from "ngx-toastr";
 import { tap } from 'rxjs/operators';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -43,9 +43,15 @@ export class TokenInterceptor implements HttpInterceptor {
           this.saveCredentials(res.body);
         }
 
-        // if (res instanceof HttpResponse && res.body && req.url.endsWith('register')) {
-        //     this.tostr.success(res.body.message)
-        // }
+        if (
+          res instanceof HttpResponse &&
+          res.body &&
+          req.url.endsWith('customers')
+        ) {
+          // this.tostr.success(res.body.message)
+          console.log(res.body);
+          this.saveCredentials(res.body);
+        }
       })
     );
   }

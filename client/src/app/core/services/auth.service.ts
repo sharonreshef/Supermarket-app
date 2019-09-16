@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthData } from './auth-data.model';
-import { LoginData } from './login-data.model';
 import { Router } from '@angular/router';
-import { LoginModel } from '../core/models/auth/login.model';
+import { RegisterModel } from '../models/auth/register.model';
+import { LoginModel } from '../models/auth/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +14,23 @@ export class AuthService {
     private router: Router
   ) {}
 
+  // isIDUniqe;
+
+  // checkID(customerID: string) {
+  //   const body = {
+  //     customerID: customerID
+  //   };
+  //   this.http
+  //     .post('http://localhost:3000/customers/checkID', body)
+  //     .subscribe(response => {
+  //       if(response.status === 200)
+  //     });
+  // }
+  // getUniqe() {
+  //   console.log(this.isIDUniqe);
+  //   return this.isIDUniqe;
+  // }
+
   createUser(
     email: string,
     password: string,
@@ -24,7 +40,7 @@ export class AuthService {
     firstName: string,
     lastName: string
   ) {
-    const authData: AuthData = {
+    const body: RegisterModel = {
       email: email,
       password: password,
       customerID: customerID,
@@ -34,9 +50,10 @@ export class AuthService {
       lastName: lastName
     };
     this.http
-      .post('http://localhost:3000/customers', authData)
+      .post('http://localhost:3000/customers', body)
       .subscribe(response => {
         console.log(response);
+        this.router.navigate(['']);
       });
   }
 
@@ -60,6 +77,10 @@ export class AuthService {
 
   getIsAdmin() {
     return localStorage.getItem('isAdmin') === 'true';
+  }
+
+  getIsUniqe() {
+    return;
   }
 
   logout() {

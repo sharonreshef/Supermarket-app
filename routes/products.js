@@ -5,7 +5,7 @@ const Category = require('../models/Category');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 
-router.get('/', auth, async function(req, res, next) {
+router.get('/', async function(req, res, next) {
   const products = await Product.find().exec();
   res.send(products);
 });

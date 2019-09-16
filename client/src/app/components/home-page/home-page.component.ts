@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { StoreService } from '../store.service';
+import { StoreService } from '../../store.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-home-page',

@@ -45,6 +45,7 @@ router.post(
       city,
       street
     } = req.body;
+    const isAdmin = false;
 
     try {
       let customer = await Customer.findOne({ customerID });
@@ -59,7 +60,8 @@ router.post(
           customerID,
           password,
           city,
-          street
+          street,
+          isAdmin
         });
 
         const salt = await bcrypt.genSalt(10);
@@ -69,9 +71,11 @@ router.post(
         await customer.save();
 
         const payload = {
-          customer: {
-            id: customer.customerID
-          }
+          email: customer.email,
+          username: customer.firstName,
+          customerID: customer.customerID,
+          isAdmin: customer.isAdmin,
+          orders: customer.orders
         };
 
         jwt.sign(
@@ -82,7 +86,7 @@ router.post(
           },
           (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({ token, payload });
           }
         );
       }
@@ -92,5 +96,22 @@ router.post(
     }
   }
 );
+
+router.post('/checkID', async (req, res) => {
+  const { customerID } = req.body;
+
+  try {
+    let customer = await Customer.findOne({ customerID });
+
+    if (customer) {
+      return res.status(400).send('Customer already exists');
+    } else {
+      res.json(true);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;
