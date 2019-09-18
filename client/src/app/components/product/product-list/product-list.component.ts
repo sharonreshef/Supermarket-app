@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, DoCheck } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-// import { Store } from '@ngrx/store';
-// import { AppState } from 'src/app/core/store/app.state';
+import { ProductService } from 'src/app/core/services/product.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store/app.state';
 import { animations } from './product-list-animation';
 import { Subscription } from 'rxjs';
-import { ProductModel } from 'src/app/core/models/product/product.model';
-import { StoreService } from 'src/app/store.service';
+import ProductModel from 'src/app/core/models/product/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -23,20 +23,29 @@ export class ProductListComponent implements OnInit {
   currentPage: number = 1;
   constructor(
     private spinner: NgxSpinnerService,
-    private store: StoreService // private store: Store<AppState>
+    private productService: ProductService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
     this.spinner.show();
-    this.store.getProducts();
+    this.productService.getAllProducts();
 
-    // this.subscribe$.push(
-    //   this.store
-    //     .select<BookModel[]>(state => state.book.all)
-    //     .subscribe(books => {
-    //       this.books = books;
-    //       this.spinner.hide();
-    //     })
-    // );
+    this.subscribe$.push(
+      this.store
+        .select<ProductModel[]>(state => state.product.all)
+        .subscribe(products => {
+          this.products = products;
+          this.spinner.hide();
+        })
+    );
+  }
+
+  changePage(page) {
+    this.currentPage = page;
+  }
+
+  ngOnDestroy(): void {
+    this.subscribe$.forEach(sub => sub.unsubscribe());
   }
 }

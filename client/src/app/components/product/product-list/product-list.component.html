@@ -1,8 +1,5 @@
 <div class="card-deck">
-  <app-card
-    *ngFor="let product of this.store.filterdProducts"
-    [product]="product"
-  ></app-card>
+  <app-card *ngFor="let product of products" [product]="product"></app-card>
 </div>
 
 <!-- <pagination-controls
