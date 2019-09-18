@@ -1,11 +1,10 @@
 import { Component, OnInit, Output, DoCheck } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Store } from '@ngrx/store';
+// import { Store } from '@ngrx/store';
 // import { AppState } from 'src/app/core/store/app.state';
 import { animations } from './product-list-animation';
 import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/core/models/product/product.model';
-import { ProductService } from 'src/app/product.service';
 import { StoreService } from 'src/app/store.service';
 
 @Component({
@@ -16,7 +15,7 @@ import { StoreService } from 'src/app/store.service';
 })
 export class ProductListComponent implements OnInit {
   @Output()
-  books: ProductModel[];
+  products: ProductModel[];
 
   subscribe$: Subscription[] = [];
 

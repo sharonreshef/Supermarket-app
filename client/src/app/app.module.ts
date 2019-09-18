@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +27,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { CardComponent } from './components/shared/card/card.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { appReducers } from './core/store/app.reducers';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,8 @@ import { ProductListComponent } from './components/product/product-list/product-
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({}),
     MDBBootstrapModule.forRoot(),
     MatInputModule,
     MatFormFieldModule,
