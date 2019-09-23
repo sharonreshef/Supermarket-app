@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Product } from 'src/app/models/product.model';
 import { CartProductModel } from 'src/app/core/models/cart/cart.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/store/app.state';
+import { AddToCart } from 'src/app/core/store/cart/cart.actions';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -16,7 +19,8 @@ export class CardComponent implements OnInit {
   route: Router;
   constructor(
     private authService: AuthService,
-    private router: Router // private store: Store<AppState>
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   ngDoCheck() {
@@ -38,8 +42,8 @@ export class CardComponent implements OnInit {
     );
 
     console.log(productToAdd);
-    // this.store.dispatch(new AddToCart(bookToAdd))
-    // this.router.navigate(['/cart'])
+    this.store.dispatch(new AddToCart(productToAdd));
+    // this.router.navigate(['/products']);
   }
   ngOnInit() {}
 }

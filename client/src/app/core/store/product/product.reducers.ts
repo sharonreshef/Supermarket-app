@@ -50,6 +50,6 @@ export function productReducer(
     // case ProductActions.DELETE_PRODUCT:
     //     return deleteProduct(state, action.payload);
     default:
-      return initialState;
+      return state;
   }
 }

@@ -1,4 +1,5 @@
 import { CartState } from './cart.state';
+import { AppState } from '../app.state';
 import {
   ADD_TO_CART,
   UPDATE_CART,
@@ -15,12 +16,15 @@ function addToCart(state: CartState, product: CartProductModel) {
   if (state.products.find(p => p._id === product._id)) {
     const newProducts = state.products.slice();
     const cartProduct = newProducts.find(p => p._id === product._id);
+    console.log(cartProduct);
     cartProduct.quantity = +1;
     return {
       ...state,
       products: newProducts
     };
   }
+  console.log(state);
+  console.log(state.products, product);
 
   return {
     ...state,
