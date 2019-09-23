@@ -3,14 +3,8 @@ var router = express.Router();
 var Cart = require('../models/Cart');
 var auth = require('../middleware/auth');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 router.post('/', auth, async (req, res) => {
-  const customerID = req.customer.id;
-  console.log(customerID);
+  const customerID = req.customer.customerID;
   const dateCreated = new Date();
   const cart = new Cart({
     customerID,
