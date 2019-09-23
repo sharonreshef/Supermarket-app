@@ -52,18 +52,18 @@ router.post('/:cartId', auth, async (req, res) => {
     const document = Cart.updateOne(
       { _id: cartId.cartId },
 
-      { products: products }
-      // async function(err, raw) {
-      //   const newCart = await Cart.findById(cartId.cartId);
+      { products: products },
+      async function(err, raw) {
+        const newCart = await Cart.findById(cartId.cartId);
 
-      //   if (err) {
-      //     res.send(err);
-      //   }
-      //   // res.send(newCart);
-      // }
+        if (err) {
+          res.send(err);
+        }
+        res.send(newCart);
+      }
     );
 
-    res.status(200).json(cart);
+    // res.status(200).json(cart);
   } catch (e) {
     res.status(400).json(e);
   }
@@ -82,10 +82,18 @@ router.delete('/:cartId/delete', auth, async (req, res) => {
     const document = Cart.updateOne(
       { _id: cartId.cartId },
 
-      { products: products }
+      { products: products },
+      async function(err, raw) {
+        const newCart = await Cart.findById(cartId.cartId);
+
+        if (err) {
+          res.send(err);
+        }
+        res.send(newCart);
+      }
     );
 
-    res.status(200).json(cart);
+    // res.status(200).json(cart);
   } catch (e) {
     res.status(400).json(e);
   }

@@ -4,13 +4,23 @@ import {
   ADD_TO_CART,
   UPDATE_CART,
   REMOVE_FROM_CART,
-  CLEAR_CART
+  CLEAR_CART,
+  GET_USER_CART
 } from './cart.actions';
-import { CartProductModel } from '../../models/cart/cart.model';
+import { CartProductModel } from '../../models/cart/cartProduct.model';
+import { CartModel } from '../../models/cart/cart.model';
 
 const initialState: CartState = {
   products: []
 };
+
+function getUserCart(state: CartState, cart: CartModel) {
+  console.log(state, cart.products);
+  return {
+    ...state,
+    products: cart.products
+  };
+}
 
 function addToCart(state: CartState, product: CartProductModel) {
   if (state.products.find(p => p._id === product._id)) {
@@ -60,6 +70,8 @@ function clearCart(state) {
 
 export function cartReducer(state: CartState = initialState, action) {
   switch (action.type) {
+    case GET_USER_CART:
+      return getUserCart(state, action.payload);
     case ADD_TO_CART:
       return addToCart(state, action.payload);
 

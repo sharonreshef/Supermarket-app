@@ -6,6 +6,7 @@ import { AppState } from 'src/app/core/store/app.state';
 import { animations } from './product-list-animation';
 import { Subscription } from 'rxjs';
 import ProductModel from 'src/app/core/models/product/product.model';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -24,12 +25,15 @@ export class ProductListComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private productService: ProductService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
     this.spinner.show();
     this.productService.getAllProducts();
+    this.cartService.getUserCart();
 
     this.subscribe$.push(
       this.store

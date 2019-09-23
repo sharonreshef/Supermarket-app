@@ -7,11 +7,12 @@ import {
   CreateProduct,
   EditProduct
 } from '../store/product/product.actions';
+import { GetUserCart } from '../store/cart/cart.actions';
 import { Router } from '@angular/router';
 // import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map } from 'rxjs/operators';
-import ProductModel from '../models/product/product.model';
+import { CartModel } from '../models/cart/cart.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +28,9 @@ export class CartService {
     private spinner: NgxSpinnerService
   ) {}
 
-  getAllProducts() {
-    this.http.get<ProductModel[]>(this.BASE_URL).subscribe(products => {
-      this.store.dispatch(new GetAllProducts(products));
+  getUserCart() {
+    this.http.get<CartModel>(this.BASE_URL).subscribe(cart => {
+      this.store.dispatch(new GetUserCart(cart));
     });
   }
 
@@ -45,16 +46,16 @@ export class CartService {
   //         })
   // }
 
-  editBook(productModel: ProductModel) {
-    this.spinner.show();
-    this.http
-      .post(this.BASE_URL + `/${productModel._id}`, productModel)
-      .subscribe(res => {
-        this.store.dispatch(new EditProduct(res));
-        this.spinner.hide();
-        // this.router.navigate(['/']);
-      });
-  }
+  //   editBook(productModel: ProductModel) {
+  //     this.spinner.show();
+  //     this.http
+  //       .post(this.BASE_URL + `/${productModel._id}`, productModel)
+  //       .subscribe(res => {
+  //         this.store.dispatch(new EditProduct(res));
+  //         this.spinner.hide();
+  //         // this.router.navigate(['/']);
+  //       });
+  //   }
 
   // deleteBook(book: BookModel, activeModal) {
   //     this.spinner.show();
