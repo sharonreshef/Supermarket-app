@@ -6,6 +6,7 @@ import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { AddToCart } from 'src/app/core/store/cart/cart.actions';
+import { CartService } from 'src/app/core/services/cart.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -20,7 +21,8 @@ export class CardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private cartServics: CartService
   ) {}
 
   ngDoCheck() {
@@ -41,8 +43,12 @@ export class CardComponent implements OnInit {
       1
     );
 
+    const cartId = localStorage.getItem('cartId');
+    console.log(cartId, 'CARDID');
+    this.cartServics.addItemToCart(cartId, this.product._id);
+
     console.log(productToAdd);
-    this.store.dispatch(new AddToCart(productToAdd));
+    // this.store.dispatch(new AddToCart(productToAdd));
     // this.router.navigate(['/products']);
   }
   ngOnInit() {}

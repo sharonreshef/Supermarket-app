@@ -31,7 +31,20 @@ export class CartService {
   getUserCart() {
     this.http.get<CartModel>(this.BASE_URL).subscribe(cart => {
       this.store.dispatch(new GetUserCart(cart));
+      localStorage.setItem('cartId', cart._id);
     });
+  }
+
+  addItemToCart(cartId, productId) {
+    const itemToAdd = {
+      productId: productId,
+      amount: 1
+    };
+    this.http
+      .post<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
+      .subscribe(cart => {
+        this.store.dispatch(new GetUserCart(cart));
+      });
   }
 
   // createBook(book: CreateBookModel) {
