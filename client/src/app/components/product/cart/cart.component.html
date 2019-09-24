@@ -9,7 +9,7 @@
     <label class="product-removal">Remove</label>
     <label class="product-line-price">Total</label>
   </div>
-  <ng-container *ngIf="products; else emptyCart">
+  <ng-container *ngIf="products.length > 0; else emptyCart">
     <div *ngFor="let product of products">
       <app-cart-item
         [product]="product"

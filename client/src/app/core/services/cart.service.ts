@@ -30,10 +30,13 @@ export class CartService {
 
   getUserCart() {
     this.http.get<CartModel>(this.BASE_URL).subscribe(cart => {
-      this.store.dispatch(new GetUserCart(cart));
-      localStorage.setItem('cartId', cart._id);
+      if (cart === null) {
+        return;
+      } else {
+        this.store.dispatch(new GetUserCart(cart));
+        localStorage.setItem('cartId', cart._id);
+      }
     });
-    console.log('getting cart');
   }
 
   addItemToCart(cartId, productId) {

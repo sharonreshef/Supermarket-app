@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
           this.products = products;
         })
     );
+    console.log('ngoninit cart componente', this.products);
     this.calculateTotal();
   }
 
