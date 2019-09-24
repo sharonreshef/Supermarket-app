@@ -12,14 +12,10 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  private token: string;
-
   constructor(
     // private tostr: ToastrService,
-    private authService: AuthService
-  ) {
-    this.token = authService.getToken();
-  }
+    public authService: AuthService
+  ) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (req.url.endsWith('auth')) {
       req = req.clone({
@@ -30,10 +26,11 @@ export class TokenInterceptor implements HttpInterceptor {
     } else {
       req = req.clone({
         setHeaders: {
-          'x-auth-token': ` ${this.token}`,
+          'x-auth-token': ` ${this.authService.getToken()}`,
           'Content-Type': 'application/json'
         }
       });
+      console.log(this.authService.getToken());
     }
 
     return next.handle(req).pipe(
@@ -46,7 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (
           res instanceof HttpResponse &&
           res.body &&
-          req.url.endsWith('customers')
+          req.url.endsWith('products')
         ) {
           // this.tostr.success(res.body.message)
           console.log(res.body);

@@ -1,3 +1,23 @@
-.container {
-  padding-top: 100px;
+.home-container {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
 }
+
+/* .home-wrapper {
+  border: 1px solid #fff;
+  width: 900px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+}
+
+.home-item {
+  border: 1px solid #fff;
+  width: 300px;
+  height: 300px;
+} */

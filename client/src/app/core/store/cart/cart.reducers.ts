@@ -27,7 +27,7 @@ function addToCart(state: CartState, product: CartProductModel) {
     const newProducts = state.products.slice();
     const cartProduct = newProducts.find(p => p._id === product._id);
     console.log(cartProduct);
-    cartProduct.quantity = +1;
+    cartProduct.amount = +1;
     return {
       ...state,
       products: newProducts
@@ -42,11 +42,11 @@ function addToCart(state: CartState, product: CartProductModel) {
   };
 }
 
-function updateCart(state: CartState, id: string, quantity: number) {
+function updateCart(state: CartState, id: string, amount: number) {
   // debugger
   const newProducts = state.products.slice();
   const cartProduct = newProducts.find(p => p._id === id);
-  cartProduct.quantity = quantity;
+  cartProduct.amount = amount;
 
   return {
     ...state,

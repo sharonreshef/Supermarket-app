@@ -64,6 +64,7 @@ export class AuthService {
   }
 
   getToken() {
+    console.log('geting tokennnnnnn', localStorage.getItem('token'));
     return localStorage.getItem('token');
   }
 

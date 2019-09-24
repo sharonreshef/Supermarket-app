@@ -28,6 +28,9 @@ import { NavigationComponent } from './components/shared/navigation/navigation.c
 import { CardComponent } from './components/shared/card/card.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { appReducers } from './core/store/app.reducers';
+import { ProductPageComponent } from './components/product/product-page/product-page.component';
+import { CartComponent } from './components/product/cart/cart.component';
+import { CartItemComponent } from './components/product/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { appReducers } from './core/store/app.reducers';
     HomePageComponent,
     NavigationComponent,
     CardComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductPageComponent,
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

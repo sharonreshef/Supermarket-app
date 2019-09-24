@@ -1,22 +1,10 @@
-<!-- <mat-card [routerLink]="link" class="product">
-  <mat-card-header>
-    <mat-card-title>{{ product.name | uppercase }}</mat-card-title>
-    <mat-card-subtitle
-      >price: <strong>{{ product.price }}$</strong></mat-card-subtitle
-    >
-  </mat-card-header>
-  <img mat-card-image [src]="product.image" [alt]="product.name" />
-</mat-card> -->
-
-<!-- Card -->
 <mdb-card>
-  <div class="view rgba-white-slight waves-light">
+  <div class="view overlay waves-light" mdbWavesEffect>
     <!-- Card img -->
-    <mdb-card-img
-      class="card-item"
-      src="{{ product.image }}"
-      alt="Card image cap"
-    ></mdb-card-img>
+    <mdb-card-img src="{{ product.image }}" alt="Card image cap"></mdb-card-img>
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
   </div>
   <!--Card content-->
   <mdb-card-body>
@@ -27,7 +15,6 @@
 
     <!--Text-->
     <mdb-card-text>{{ product.price }} $ </mdb-card-text>
-
     <ng-container *ngIf="isAdmin; else userControls">
       <a
         routerLink="/admin/edit/{{ product._id }}"
@@ -35,14 +22,18 @@
         color="warning"
         mdbWavesEffect
         >Edit</a
-      >
-    </ng-container>
-
+      ></ng-container
+    >
     <ng-template #userControls>
       <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a>
-      <!-- <a *ngIf="isInCart" routerLink="/cart" mdbBtn color="primary" mdbWavesEffect>GO To Cart</a> -->
+      <div *ngIf="isInCart" class="product-quantity">
+        <input
+          type="number"
+          (change)="setQuantity($event, product._id)"
+          value="{{ product.amount }}"
+          min="1"
+        />
+      </div>
     </ng-template>
   </mdb-card-body>
 </mdb-card>
-
-<!-- Card -->

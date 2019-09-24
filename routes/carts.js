@@ -42,7 +42,9 @@ router.post('/:cartId', auth, async (req, res) => {
 
     const item = new Item({
       productId: product.id,
+      name: product.name,
       amount: amount,
+      image: product.image,
       price: product.price * amount,
       cartId: cartId.cartId
     });

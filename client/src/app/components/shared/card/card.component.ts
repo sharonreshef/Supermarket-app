@@ -7,6 +7,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { AddToCart } from 'src/app/core/store/cart/cart.actions';
 import { CartService } from 'src/app/core/services/cart.service';
+import { Subscription } from 'rxjs';
+import { ProductsComponent } from 'src/app/products/products.component';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -14,10 +17,12 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class CardComponent implements OnInit {
   @Input() product: Product;
+  subscribe$: Subscription[] = [];
 
   isAdmin: boolean = false;
-  isInCart: boolean;
+  isInCart: boolean = false;
   route: Router;
+  cart: CartProductModel[];
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -44,12 +49,24 @@ export class CardComponent implements OnInit {
     );
 
     const cartId = localStorage.getItem('cartId');
-    console.log(cartId, 'CARDID');
+    console.log(cartId);
     this.cartServics.addItemToCart(cartId, this.product._id);
 
     console.log(productToAdd);
+    this.isInCart = true;
     // this.store.dispatch(new AddToCart(productToAdd));
     // this.router.navigate(['/products']);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.subscribe$.push(
+      this.store
+        .select<CartProductModel[]>(state => state.cart.products)
+        .subscribe(products => {
+          this.cart = products;
+        })
+    );
+    if (this.cart.find(p => p.productId === this.product._id)) {
+      this.isInCart = true;
+    }
+  }
 }

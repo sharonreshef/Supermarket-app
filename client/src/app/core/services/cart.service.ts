@@ -33,6 +33,7 @@ export class CartService {
       this.store.dispatch(new GetUserCart(cart));
       localStorage.setItem('cartId', cart._id);
     });
+    console.log('getting cart');
   }
 
   addItemToCart(cartId, productId) {
