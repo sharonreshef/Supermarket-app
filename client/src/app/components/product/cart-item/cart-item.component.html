@@ -6,10 +6,10 @@
     <div class="product-title">{{ product.name }}</div>
   </div>
   <div class="product-price">{{ product.price.toFixed(2) }}</div>
-  <div class="product-quantity">
+  <div class="product-amount">
     <input
       type="number"
-      (change)="setQuantity($event, product._id)"
+      (change)="setQuantity($event, product.productId)"
       value="{{ product.amount }}"
       min="1"
     />
