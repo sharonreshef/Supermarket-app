@@ -29,7 +29,7 @@ function addToCart(state: CartState, product: CartProductModel) {
       p => p.productId === product.productId
     );
     console.log(cartProduct);
-    cartProduct.amount = +1;
+    cartProduct.quantity = +1;
     return {
       ...state,
       products: newProducts
@@ -44,11 +44,11 @@ function addToCart(state: CartState, product: CartProductModel) {
   };
 }
 
-function updateCart(state: CartState, id: string, amount: number) {
+function updateCart(state: CartState, id: string, quantity: number) {
   // debugger
   const newProducts = state.products.slice();
   const cartProduct = newProducts.find(p => p.productId === id);
-  cartProduct.amount = amount;
+  cartProduct.quantity = quantity;
 
   return {
     ...state,

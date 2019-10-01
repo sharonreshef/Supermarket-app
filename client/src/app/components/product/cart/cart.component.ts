@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { UpdateCart } from 'src/app/core/store/cart/cart.actions';
+import { CartService } from 'src/app/core/services/cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +15,8 @@ export class CartComponent implements OnInit {
   total: number;
   private subscription$: Subscription[] = [];
   constructor(
-    private store: Store<AppState> // private chekoutService:CheckoutService,
+    private store: Store<AppState>,
+    private cartService: CartService // private chekoutService:CheckoutService,
   ) {}
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class CartComponent implements OnInit {
   private calculateTotal() {
     console.log('ngoninit');
     for (const p of this.products) {
-      this.total += p.price * p.amount;
+      this.total += p.price * p.quantity;
     }
     console.log(this.total);
   }
@@ -48,7 +50,8 @@ export class CartComponent implements OnInit {
 
     if (!isNaN(newQuantity) && parseInt(newQuantity, 10) >= 1) {
       // debugger
-      this.store.dispatch(new UpdateCart(id, newQuantity));
+      // this.store.dispatch(new UpdateCart(id, newQuantity));
+      this.cartService.updateCart(id, newQuantity);
     } else {
       this.store.dispatch(new UpdateCart(id, 1));
     }

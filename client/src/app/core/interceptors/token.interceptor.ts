@@ -30,13 +30,11 @@ export class TokenInterceptor implements HttpInterceptor {
           'Content-Type': 'application/json'
         }
       });
-      console.log(this.authService.getToken());
     }
 
     return next.handle(req).pipe(
       tap((res: HttpEvent<any>) => {
         if (res instanceof HttpResponse && req.url.endsWith('auth')) {
-          console.log(res.body);
           this.saveCredentials(res.body);
         }
 
@@ -46,7 +44,6 @@ export class TokenInterceptor implements HttpInterceptor {
           req.url.endsWith('products')
         ) {
           // this.tostr.success(res.body.message)
-          console.log(res.body);
           this.saveCredentials(res.body);
         }
       })
@@ -54,9 +51,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private saveCredentials(body) {
-    console.log(body);
     const { payload } = body;
-    console.log(payload);
     const authToken = body.token;
     const userId = payload.customerID;
     const isAdmin = payload.isAdmin;

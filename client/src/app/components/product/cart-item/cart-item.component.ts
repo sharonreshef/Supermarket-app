@@ -14,7 +14,7 @@ export class CartItemComponent implements OnInit {
   removeItem = new EventEmitter();
 
   @Output()
-  amount = new EventEmitter();
+  quantity = new EventEmitter();
 
   productTotal: number;
 
@@ -26,12 +26,12 @@ export class CartItemComponent implements OnInit {
 
   setQuantity(event, id) {
     const newQuantity = event.target.value;
-    this.amount.emit({ newQuantity, id });
+    this.quantity.emit({ newQuantity, id });
     this.calculateSubTotal(newQuantity);
   }
 
   ngOnInit() {
-    this.calculateSubTotal(this.product.amount);
+    this.calculateSubTotal(this.product.quantity);
   }
 
   private calculateSubTotal(newQuantity) {

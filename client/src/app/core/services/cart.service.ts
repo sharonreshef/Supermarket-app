@@ -42,13 +42,36 @@ export class CartService {
   addItemToCart(cartId, productId) {
     const itemToAdd = {
       productId: productId,
-      amount: 1
+      quantity: 1
     };
     this.http
       .post<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
       .subscribe(cart => {
         this.store.dispatch(new GetUserCart(cart));
       });
+  }
+
+  updateCart(id: string, quantity: number) {
+    const cartId = localStorage.getItem('cartId');
+    // debugger
+    const itemToAdd = {
+      productId: id,
+      quantity: quantity
+    };
+    this.http
+      .put<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
+      .subscribe(cart => {
+        this.store.dispatch(new GetUserCart(cart));
+      });
+
+    // const newProducts = state.products.slice();
+    // const cartProduct = newProducts.find(p => p.productId === id);
+    // cartProduct.quantity = quantity;
+
+    // return {
+    //   ...state,
+    //   products: newProducts
+    // };
   }
 
   // createBook(book: CreateBookModel) {

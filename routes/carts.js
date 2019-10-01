@@ -33,19 +33,19 @@ router.post('/', auth, async (req, res) => {
 router.post('/:cartId', auth, async (req, res) => {
   const cartId = req.params;
   const { productId } = req.body;
-  const { amount } = req.body;
+  const { quantity } = req.body;
 
   try {
     const cart = await Cart.findById(cartId.cartId).exec();
     const product = await Product.findById(productId).exec();
-    // const price = product.price * amount;
+    // const price = product.price * quantity;
 
     const item = new Item({
       productId: product.id,
       name: product.name,
-      amount: amount,
+      quantity: quantity,
       image: product.image,
-      price: product.price * amount,
+      price: product.price * quantity,
       cartId: cartId.cartId
     });
     // console.log(item);
@@ -66,6 +66,35 @@ router.post('/:cartId', auth, async (req, res) => {
     );
 
     // res.status(200).json(cart);
+  } catch (e) {
+    res.status(400).json(e);
+  }
+});
+
+//Change product quantity
+router.put('/:cartId', [auth], async (req, res) => {
+  const { cartId } = req.params;
+  const { quantity, productId } = req.body;
+  try {
+    const cart = await Cart.findOneAndUpdate(
+      {
+        _id: cartId,
+        'products.productId': productId
+      },
+      {
+        $set: {
+          'products.$.quantity': quantity
+        }
+      },
+      async function(err, raw) {
+        const changedCart = await Cart.findById(cartId);
+        console.log('CART AFTER CHANGE', changedCart);
+        if (err) {
+          res.send(err);
+        }
+        res.send(changedCart);
+      }
+    );
   } catch (e) {
     res.status(400).json(e);
   }

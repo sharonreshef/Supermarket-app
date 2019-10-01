@@ -5,6 +5,6 @@ export class CartProductModel {
     public productId: string,
     public image: string,
     public price: number,
-    public amount: number
+    public quantity: number
   ) {}
 }

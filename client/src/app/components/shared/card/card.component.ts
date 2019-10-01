@@ -57,16 +57,18 @@ export class CardComponent implements OnInit {
     // this.store.dispatch(new AddToCart(productToAdd));
     // this.router.navigate(['/products']);
   }
+
   ngOnInit() {
     this.subscribe$.push(
       this.store
         .select<CartProductModel[]>(state => state.cart.products)
         .subscribe(products => {
           this.cart = products;
+          if (this.cart.find(p => p.productId === this.product._id)) {
+            this.isInCart = true;
+          }
+          console.log(this.isInCart);
         })
     );
-    if (this.cart.find(p => p.productId === this.product._id)) {
-      this.isInCart = true;
-    }
   }
 }

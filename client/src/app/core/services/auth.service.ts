@@ -52,19 +52,17 @@ export class AuthService {
     this.http
       .post('http://localhost:3000/customers', body)
       .subscribe(response => {
-        console.log(response);
         this.router.navigate(['']);
       });
   }
 
   login(body: LoginModel) {
-    this.http.post('http://localhost:3000/auth', body).subscribe(response => {
-      console.log(response);
-    });
+    this.http
+      .post('http://localhost:3000/auth', body)
+      .subscribe(response => {});
   }
 
   getToken() {
-    console.log('geting tokennnnnnn', localStorage.getItem('token'));
     return localStorage.getItem('token');
   }
 
