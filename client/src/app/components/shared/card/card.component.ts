@@ -49,10 +49,8 @@ export class CardComponent implements OnInit {
     );
 
     const cartId = localStorage.getItem('cartId');
-    console.log(cartId);
     this.cartServics.addItemToCart(cartId, this.product._id);
 
-    console.log(productToAdd);
     this.isInCart = true;
     // this.store.dispatch(new AddToCart(productToAdd));
     // this.router.navigate(['/products']);
@@ -67,7 +65,6 @@ export class CardComponent implements OnInit {
           if (this.cart.find(p => p.productId === this.product._id)) {
             this.isInCart = true;
           }
-          console.log(this.isInCart);
         })
     );
   }

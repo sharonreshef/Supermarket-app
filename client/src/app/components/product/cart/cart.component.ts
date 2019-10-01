@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
   private subscription$: Subscription[] = [];
   constructor(
     private store: Store<AppState>,
-    private cartService: CartService // private chekoutService:CheckoutService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -26,18 +26,16 @@ export class CartComponent implements OnInit {
         .pipe(select(state => state.cart.products))
         .subscribe(products => {
           this.products = products;
+          this.calculateTotal();
         })
     );
-    console.log('ngoninit cart componente', this.products);
-    this.calculateTotal();
   }
 
   private calculateTotal() {
-    console.log('ngoninit');
+    this.total = 0;
     for (const p of this.products) {
       this.total += p.price * p.quantity;
     }
-    console.log(this.total);
   }
 
   // removeFromCart(id: string) {
@@ -47,16 +45,7 @@ export class CartComponent implements OnInit {
 
   updateQuantity(quantityObj) {
     const { id, newQuantity } = quantityObj;
-
-    if (!isNaN(newQuantity) && parseInt(newQuantity, 10) >= 1) {
-      // debugger
-      // this.store.dispatch(new UpdateCart(id, newQuantity));
-      this.cartService.updateCart(id, newQuantity);
-    } else {
-      this.store.dispatch(new UpdateCart(id, 1));
-    }
-
-    this.calculateTotal();
+    this.cartService.updateCart(id, newQuantity);
   }
 
   // checkout(){

@@ -36,6 +36,5 @@ export class CartItemComponent implements OnInit {
 
   private calculateSubTotal(newQuantity) {
     this.productTotal = this.product.price * newQuantity;
-    console.log(this.productTotal);
   }
 }
