@@ -1,4 +1,4 @@
-<mdb-card>
+<mdb-card class="product">
   <div class="view overlay waves-light" mdbWavesEffect>
     <!-- Card img -->
     <mdb-card-img src="{{ product.image }}" alt="Card image cap"></mdb-card-img>
@@ -25,15 +25,21 @@
       ></ng-container
     >
     <ng-template #userControls>
-      <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a>
-      <div *ngIf="isInCart" class="product-quantity">
-        <input
+      <!-- <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a> -->
+      <div *ngIf="isInCart; else buyButton" class="product-quantity">
+        <!-- <input
           type="number"
           (change)="setQuantity($event, product._id)"
           value="{{ product.quantity }}"
           min="1"
-        />
+        /> -->
+        <button (click)="remove()" mdbBtn color="danger">
+          Remove
+        </button>
       </div>
+      <ng-template #buyButton>
+        <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a>
+      </ng-template>
     </ng-template>
   </mdb-card-body>
 </mdb-card>

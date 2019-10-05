@@ -47,6 +47,10 @@ export class CartComponent implements OnInit {
     this.cartService.updateCart(id, newQuantity);
   }
 
+  clear() {
+    this.cartService.clearCart();
+  }
+
   // checkout(){
   //   // let checkout=new CheckoutModel(this.books);
   //     this.chekoutService.checkout(this.books);

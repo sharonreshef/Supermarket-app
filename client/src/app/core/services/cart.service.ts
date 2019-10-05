@@ -7,7 +7,11 @@ import {
   CreateProduct,
   EditProduct
 } from '../store/product/product.actions';
-import { GetUserCart } from '../store/cart/cart.actions';
+import {
+  GetUserCart,
+  RemoveFromCart,
+  ClearCart
+} from '../store/cart/cart.actions';
 import { Router } from '@angular/router';
 // import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -35,7 +39,18 @@ export class CartService {
       } else {
         this.store.dispatch(new GetUserCart(cart));
         localStorage.setItem('cartId', cart._id);
+        localStorage.setItem('cart', JSON.stringify(cart));
       }
+    });
+  }
+
+  createCart(productId) {
+    this.http.post<CartModel>(this.BASE_URL, null).subscribe(cart => {
+      localStorage.setItem('cartId', cart._id);
+      const cartId = localStorage.getItem('cartId');
+      this.addItemToCart(cartId, productId);
+      this.store.dispatch(new GetUserCart(cart));
+      // }
     });
   }
 
@@ -48,6 +63,7 @@ export class CartService {
       .post<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
       .subscribe(cart => {
         this.store.dispatch(new GetUserCart(cart));
+        localStorage.setItem('cart', JSON.stringify(cart));
       });
   }
 
@@ -63,6 +79,14 @@ export class CartService {
       .subscribe(cart => {
         this.store.dispatch(new GetUserCart(cart));
       });
+  }
+
+  clearCart() {
+    const cartId = localStorage.getItem('cartId');
+    this.http.delete<CartModel>(this.BASE_URL + `${cartId}`).subscribe(() => {
+      this.store.dispatch(new ClearCart());
+      localStorage.removeItem('cartId');
+    });
   }
 
   // createBook(book: CreateBookModel) {
@@ -88,13 +112,14 @@ export class CartService {
   //       });
   //   }
 
-  removeItemFromCart(productId: String) {
+  removeItemFromCart(productId: string) {
     // this.spinner.show();
     const cartId = localStorage.getItem('cartId');
     this.http
       .delete<CartModel>(this.BASE_URL + `${cartId}/delete/${productId}`)
       .subscribe(cart => {
-        this.store.dispatch(new GetUserCart(cart));
+        this.store.dispatch(new RemoveFromCart(productId));
+        localStorage.setItem('cart', JSON.stringify(cart));
       });
   }
 }

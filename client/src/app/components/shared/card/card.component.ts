@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Product } from 'src/app/models/product.model';
@@ -17,6 +17,8 @@ import { ProductsComponent } from 'src/app/products/products.component';
 })
 export class CardComponent implements OnInit {
   @Input() product: Product;
+  @Output()
+  removeItem = new EventEmitter();
   subscribe$: Subscription[] = [];
 
   isAdmin: boolean = false;
@@ -32,6 +34,10 @@ export class CardComponent implements OnInit {
 
   ngDoCheck() {
     this.isAdmin = this.authService.getIsAdmin();
+  }
+  remove() {
+    this.removeItem.emit(this.product._id);
+    this.checkIfIsInCart();
   }
 
   addToCart() {
@@ -49,11 +55,27 @@ export class CardComponent implements OnInit {
     );
 
     const cartId = localStorage.getItem('cartId');
-    this.cartServics.addItemToCart(cartId, this.product._id);
+    console.log(localStorage.getItem('cartId'));
+    if (localStorage.getItem('cartId') !== null) {
+      this.cartServics.addItemToCart(cartId, this.product._id);
+    } else {
+      this.cartServics.createCart(this.product._id);
+    }
 
-    this.isInCart = true;
-    // this.store.dispatch(new AddToCart(productToAdd));
-    // this.router.navigate(['/products']);
+    this.checkIfIsInCart();
+  }
+
+  checkIfIsInCart() {
+    this.store
+      .select<CartProductModel[]>(state => state.cart.products)
+      .subscribe(products => {
+        this.cart = products;
+        if (this.cart.find(p => p.productId === this.product._id)) {
+          this.isInCart = true;
+        } else {
+          this.isInCart = false;
+        }
+      });
   }
 
   ngOnInit() {

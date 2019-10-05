@@ -173,6 +173,21 @@ label {
   background-color: #494;
 }
 
+.clear {
+  float: right;
+  border: 0;
+  margin-top: 20px;
+  padding: 6px 25px;
+  background-color: rgb(197, 70, 70);
+  color: #fff;
+  font-size: 25px;
+  border-radius: 3px;
+}
+
+.clear:hover {
+  background-color: rgb(226, 56, 50);
+}
+
 /* Make adjustments for tablet */
 @media screen and (max-width: 650px) {
   .shopping-cart {

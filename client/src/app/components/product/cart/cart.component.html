@@ -27,6 +27,9 @@
     <button *ngIf="products.length" (click)="checkout()" class="checkout">
       Checkout
     </button>
+    <button *ngIf="products.length" (click)="clear()" class="clear">
+      Clear cart
+    </button>
   </ng-container>
   <ng-template #emptyCart>
     <h1>Empty</h1>

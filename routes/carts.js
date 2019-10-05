@@ -117,5 +117,35 @@ router.delete('/:cartId/delete/:productId', auth, async (req, res) => {
 });
 
 //delete all cart
+router.delete('/:cartId', auth, async (req, res) => {
+  const cartId = req.params.cartId;
+
+  try {
+    // Cart.remove(
+    //   { _id: cartId }
+    //   //   , async function(err, obj) {
+    //   //   const changedCart = await Cart.findById(cartId);
+    //   //   if (err) {
+    //   //     res.send(err);
+    //   //   }
+    //   //   res.send(changedCart);
+    //   // }
+    // );
+    // res.send('cart cleared');
+
+    Cart.findByIdAndRemove(cartId, (err, cart) => {
+      // As always, handle any potential errors:
+      if (err) return res.status(500).send(err);
+      // We'll create a simple object to send back with a message and the id of the document that was removed
+      // You can really do this however you want, though.
+      const response = {
+        message: 'cart successfully deleted'
+      };
+      return res.status(200).send(response);
+    });
+  } catch (e) {
+    res.status(400).json(e);
+  }
+});
 
 module.exports = router;

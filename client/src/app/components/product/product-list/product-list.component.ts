@@ -48,6 +48,9 @@ export class ProductListComponent implements OnInit {
   changePage(page) {
     this.currentPage = page;
   }
+  removeFromCart(productId: string) {
+    this.cartService.removeItemFromCart(productId);
+  }
 
   ngOnDestroy(): void {
     this.subscribe$.forEach(sub => sub.unsubscribe());
