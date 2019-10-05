@@ -38,10 +38,9 @@ export class CartComponent implements OnInit {
     }
   }
 
-  // removeFromCart(id: string) {
-  //   this.store.dispatch(new RemoveFromCart(id));
-  //   this.calculateTotal();
-  // }
+  removeFromCart(productId: string) {
+    this.cartService.removeItemFromCart(productId);
+  }
 
   updateQuantity(quantityObj) {
     const { id, newQuantity } = quantityObj;

@@ -15,7 +15,6 @@ const initialState: CartState = {
 };
 
 function getUserCart(state: CartState, cart: CartModel) {
-  console.log(state, cart.products);
   return {
     ...state,
     products: cart.products

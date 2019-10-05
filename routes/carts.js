@@ -9,7 +9,6 @@ var auth = require('../middleware/auth');
 router.get('/', auth, async function(req, res, next) {
   const customerID = req.customer.customerID;
   const cart = await Cart.findOne({ customerID: customerID }).exec();
-
   res.send(cart);
 });
 
@@ -38,7 +37,6 @@ router.post('/:cartId', auth, async (req, res) => {
   try {
     const cart = await Cart.findById(cartId.cartId).exec();
     const product = await Product.findById(productId).exec();
-    // const price = product.price * quantity;
 
     const item = new Item({
       productId: product.id,
@@ -48,7 +46,6 @@ router.post('/:cartId', auth, async (req, res) => {
       price: product.price * quantity,
       cartId: cartId.cartId
     });
-    // console.log(item);
     var products = cart.products;
     products.push(item);
     const document = Cart.updateOne(
@@ -57,15 +54,12 @@ router.post('/:cartId', auth, async (req, res) => {
       { products: products },
       async function(err, raw) {
         const newCart = await Cart.findById(cartId.cartId);
-
         if (err) {
           res.send(err);
         }
         res.send(newCart);
       }
     );
-
-    // res.status(200).json(cart);
   } catch (e) {
     res.status(400).json(e);
   }
@@ -88,7 +82,6 @@ router.put('/:cartId', [auth], async (req, res) => {
       },
       async function(err, raw) {
         const changedCart = await Cart.findById(cartId);
-        console.log('CART AFTER CHANGE', changedCart);
         if (err) {
           res.send(err);
         }
@@ -101,30 +94,23 @@ router.put('/:cartId', [auth], async (req, res) => {
 });
 
 // delete item from cart
-router.delete('/:cartId/delete', auth, async (req, res) => {
-  const cartId = req.params;
-  const { productId } = req.body;
+router.delete('/:cartId/delete/:productId', auth, async (req, res) => {
+  const cartId = req.params.cartId;
+  const productId = req.params.productId;
 
   try {
-    const cart = await Cart.findById(cartId.cartId).exec();
-    index = cart.products.indexOf(productId);
-    var products = cart.products;
-    cart.products.splice(index, 1);
-    const document = Cart.updateOne(
-      { _id: cartId.cartId },
-
-      { products: products },
-      async function(err, raw) {
-        const newCart = await Cart.findById(cartId.cartId);
-
+    Cart.updateOne(
+      { _id: cartId },
+      { $pull: { products: { productId: productId } } },
+      { safe: true, multi: true },
+      async function(err, obj) {
+        const changedCart = await Cart.findById(cartId);
         if (err) {
           res.send(err);
         }
-        res.send(newCart);
+        res.send(changedCart);
       }
     );
-
-    // res.status(200).json(cart);
   } catch (e) {
     res.status(400).json(e);
   }

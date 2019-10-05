@@ -63,15 +63,6 @@ export class CartService {
       .subscribe(cart => {
         this.store.dispatch(new GetUserCart(cart));
       });
-
-    // const newProducts = state.products.slice();
-    // const cartProduct = newProducts.find(p => p.productId === id);
-    // cartProduct.quantity = quantity;
-
-    // return {
-    //   ...state,
-    //   products: newProducts
-    // };
   }
 
   // createBook(book: CreateBookModel) {
@@ -97,15 +88,13 @@ export class CartService {
   //       });
   //   }
 
-  // deleteBook(book: BookModel, activeModal) {
-  //     this.spinner.show();
-  //     this.http
-  //         .delete(this.BASE_URL + `delete/${book._id}`)
-  //         .subscribe(() => {
-  //             this.store.dispatch(new DeleteBook(book));
-  //             this.spinner.hide();
-  //             activeModal.close();
-  //             this.router.navigate(['/book/all']);
-  //         })
-  // }
+  removeItemFromCart(productId: String) {
+    // this.spinner.show();
+    const cartId = localStorage.getItem('cartId');
+    this.http
+      .delete<CartModel>(this.BASE_URL + `${cartId}/delete/${productId}`)
+      .subscribe(cart => {
+        this.store.dispatch(new GetUserCart(cart));
+      });
+  }
 }
