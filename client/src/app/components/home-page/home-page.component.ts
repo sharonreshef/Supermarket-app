@@ -15,7 +15,9 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class HomePageComponent implements OnInit {
   isAuth: boolean = false;
   isAdmin: boolean = false;
+  hasCart: boolean = false;
   numOfProducts: number;
+  date: Date;
   products: CartProductModel[];
   private subscription$: Subscription[] = [];
 

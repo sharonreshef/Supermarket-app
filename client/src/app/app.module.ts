@@ -32,6 +32,7 @@ import { ProductPageComponent } from './components/product/product-page/product-
 import { CartComponent } from './components/product/cart/cart.component';
 import { CartItemComponent } from './components/product/cart-item/cart-item.component';
 import { StartShoppingComponent } from './components/auth/start-shopping/start-shopping.component';
+import { NotificationsComponent } from './components/home-page/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { StartShoppingComponent } from './components/auth/start-shopping/start-s
     ProductPageComponent,
     CartComponent,
     CartItemComponent,
-    StartShoppingComponent
+    StartShoppingComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

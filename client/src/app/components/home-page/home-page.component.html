@@ -23,6 +23,9 @@
     <div class="col-4">
       stroe details
       <p>num of products {{ numOfProducts }}</p>
+      <ng-template [ngIf]="isAuth && !isAdmin">
+        <app-notifications></app-notifications>
+      </ng-template>
     </div>
   </div>
 </div>
