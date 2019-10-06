@@ -12,6 +12,7 @@ var categoriesRouter = require('./routes/categories');
 var productsRouter = require('./routes/products');
 var searchRouter = require('./routes/search');
 var cartsRouter = require('./routes/carts');
+var orderRouter = require('./routes/order');
 
 var app = express();
 app.use(cors());
@@ -32,5 +33,6 @@ app.use('/categories', categoriesRouter);
 app.use('/products', productsRouter);
 app.use('/search', searchRouter);
 app.use('/carts', cartsRouter);
+app.use('/order', orderRouter);
 
 module.exports = app;
