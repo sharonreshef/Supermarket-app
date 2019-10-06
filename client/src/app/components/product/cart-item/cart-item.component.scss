@@ -5,7 +5,7 @@
 
 .product-details {
   float: left;
-  width: 37%;
+  width: 25%;
 }
 
 .product-price {
@@ -25,7 +25,7 @@
 
 .product-line-price {
   float: left;
-  width: 12%;
+  width: 24%;
   text-align: right;
 }
 
@@ -71,8 +71,8 @@
 /* Body/Header stuff */
 body {
   padding: 0px 30px 30px 20px;
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica, Arial, sans-serif;
+  // font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+  //   Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
 
@@ -114,7 +114,7 @@ label {
 }
 .product .product-details .product-title {
   margin-right: 20px;
-  font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
+  // font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 }
 .product .product-details .product-description {
   margin: 5px 20px 5px 0;
@@ -128,7 +128,7 @@ label {
   padding: 4px 8px;
   background-color: #c66;
   color: #fff;
-  font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
+  // font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
   font-size: 12px;
   border-radius: 3px;
 }
@@ -153,9 +153,6 @@ label {
   float: right;
   width: 21%;
   text-align: right;
-}
-.totals .totals-item-total {
-  font-family: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 }
 
 .checkout {

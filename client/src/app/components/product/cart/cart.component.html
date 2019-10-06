@@ -1,14 +1,5 @@
-<h1>Shopping Cart</h1>
-
-<div class="shopping-cart">
-  <div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Book</label>
-    <label class="product-price">Price</label>
-    <label class="product-quantity">Quantity</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
-  </div>
+<div class="shopping-cart container">
+  <h1>Shopping Cart</h1>
   <ng-container *ngIf="products.length > 0; else emptyCart">
     <div *ngFor="let product of products">
       <app-cart-item
@@ -24,14 +15,14 @@
       </div>
     </div>
 
-    <button *ngIf="products.length" (click)="checkout()" class="checkout">
+    <button *ngIf="products.length" (click)="checkout()" mdbBtn color="primary">
       Checkout
     </button>
-    <button *ngIf="products.length" (click)="clear()" class="clear">
+    <button *ngIf="products.length" (click)="clear()" mdbBtn color="warning">
       Clear cart
     </button>
   </ng-container>
   <ng-template #emptyCart>
-    <h1>Empty</h1>
+    <h1>Your cart is empty</h1>
   </ng-template>
 </div>

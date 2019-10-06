@@ -15,6 +15,7 @@ import {
   MatProgressSpinnerModule,
   MatStepperModule
 } from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -62,6 +63,7 @@ import { NotificationsComponent } from './components/home-page/notifications/not
     MatToolbarModule,
     HttpClientModule,
     MatSelectModule,
+    MatSidenavModule,
     MatCardModule,
     ReactiveFormsModule,
     FormsModule,
