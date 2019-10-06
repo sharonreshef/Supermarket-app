@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-4">
       <div class="row">
-        <ng-template [ngIf]="isAuth">
-          <div>
+        <ng-template [ngIf]="isAuth && !isAdmin">
+          <app-start-shopping></app-start-shopping>
+          <!-- <div>
             <button
               mdbBtn
               color="default"
@@ -13,7 +14,7 @@
             >
               Start Shopping
             </button>
-          </div>
+          </div> -->
         </ng-template>
       </div>
       <app-login></app-login>

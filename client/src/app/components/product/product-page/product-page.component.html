@@ -1,4 +1,6 @@
 <div class="product-container">
-  <div class="cart"><app-cart></app-cart></div>
+  <ng-template [ngIf]="isAuth && !isAdmin">
+    <div class="cart"><app-cart></app-cart></div>
+  </ng-template>
   <div class="products"><app-product-list></app-product-list></div>
 </div>

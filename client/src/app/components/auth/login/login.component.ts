@@ -10,6 +10,7 @@ import {
 import { LoginModel } from 'src/app/core/models/auth/login.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -36,9 +38,6 @@ export class LoginComponent implements OnInit {
     const { username, password } = this.loginForm.value;
     const loginModel = new LoginModel(username, password);
     this.authService.login(loginModel);
-    // .subscribe(() => {
-    //   this.spinner.hide();
-    // });
     this.loginForm.reset();
   }
 }

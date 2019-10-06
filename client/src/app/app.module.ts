@@ -31,6 +31,7 @@ import { appReducers } from './core/store/app.reducers';
 import { ProductPageComponent } from './components/product/product-page/product-page.component';
 import { CartComponent } from './components/product/cart/cart.component';
 import { CartItemComponent } from './components/product/cart-item/cart-item.component';
+import { StartShoppingComponent } from './components/auth/start-shopping/start-shopping.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CartItemComponent } from './components/product/cart-item/cart-item.comp
     ProductListComponent,
     ProductPageComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    StartShoppingComponent
   ],
   imports: [
     BrowserModule,

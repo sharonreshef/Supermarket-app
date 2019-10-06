@@ -1,0 +1,28 @@
+<div>
+  <ng-template [ngIf]="this.hasCart">
+    <div>
+      <button
+        mdbBtn
+        color="default"
+        class="waves-light"
+        mdbWavesEffect
+        routerLink="products"
+      >
+        Resume shopping
+      </button>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="!this.hasCart"
+    ><div>
+      <button
+        mdbBtn
+        color="default"
+        class="waves-light"
+        mdbWavesEffect
+        routerLink="products"
+      >
+        Start shopping
+      </button>
+    </div></ng-template
+  >
+</div>

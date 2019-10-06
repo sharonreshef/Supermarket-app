@@ -23,6 +23,7 @@ import { CartModel } from '../models/cart/cart.model';
 })
 export class CartService {
   private readonly BASE_URL = `http://localhost:3000/carts/`;
+  hascart: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -32,14 +33,22 @@ export class CartService {
     private spinner: NgxSpinnerService
   ) {}
 
+  getUserCartFromStorage() {
+    return localStorage.getItem('cartId');
+  }
+
   getUserCart() {
-    this.http.get<CartModel>(this.BASE_URL).subscribe(cart => {
+    this.http.get<CartModel>(this.BASE_URL).subscribe(async cart => {
       if (cart === null) {
-        return;
+        this.hascart = false;
+        console.log('service hascart whan no cart', this.hascart);
+        return false;
       } else {
-        this.store.dispatch(new GetUserCart(cart));
-        localStorage.setItem('cartId', cart._id);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        this.hascart = true;
+        console.log('service hascart whan yes cart', this.hascart);
+
+        await this.store.dispatch(new GetUserCart(cart));
+        await localStorage.setItem('cartId', cart._id);
       }
     });
   }
@@ -50,7 +59,6 @@ export class CartService {
       const cartId = localStorage.getItem('cartId');
       this.addItemToCart(cartId, productId);
       this.store.dispatch(new GetUserCart(cart));
-      // }
     });
   }
 
@@ -63,7 +71,6 @@ export class CartService {
       .post<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
       .subscribe(cart => {
         this.store.dispatch(new GetUserCart(cart));
-        localStorage.setItem('cart', JSON.stringify(cart));
       });
   }
 
@@ -119,7 +126,6 @@ export class CartService {
       .delete<CartModel>(this.BASE_URL + `${cartId}/delete/${productId}`)
       .subscribe(cart => {
         this.store.dispatch(new RemoveFromCart(productId));
-        localStorage.setItem('cart', JSON.stringify(cart));
       });
   }
 }
