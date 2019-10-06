@@ -11,13 +11,15 @@ import { CartProductModel } from '../../models/cart/cartProduct.model';
 import { CartModel } from '../../models/cart/cart.model';
 
 const initialState: CartState = {
-  products: []
+  products: [],
+  dateCreated: null
 };
 
 function getUserCart(state: CartState, cart: CartModel) {
   return {
     ...state,
-    products: cart.products
+    products: cart.products,
+    dateCreated: cart.dateCreated
   };
 }
 
@@ -65,6 +67,7 @@ function removeFromCart(state: CartState, id: string) {
 function clearCart(state) {
   return {
     ...state,
+    dateCreated: null,
     products: []
   };
 }
