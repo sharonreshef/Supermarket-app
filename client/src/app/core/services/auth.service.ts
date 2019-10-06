@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegisterModel } from '../models/auth/register.model';
 import { LoginModel } from '../models/auth/login.model';
+import { ClearCart } from '../store/cart/cart.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.state';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +13,7 @@ import { LoginModel } from '../models/auth/login.model';
 export class AuthService {
   constructor(
     private http: HttpClient,
+    private store: Store<AppState>,
     // private tostr: ToastrService,
     private router: Router
   ) {}
@@ -84,6 +88,7 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+    this.store.dispatch(new ClearCart());
     // this.tostr.success('You ware logged out!');
     this.router.navigate(['']);
   }

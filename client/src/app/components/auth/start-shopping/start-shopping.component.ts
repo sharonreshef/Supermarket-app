@@ -20,10 +20,7 @@ export class StartShoppingComponent implements OnInit {
   hasCart: boolean;
 
   ngOnInit() {
-    console.log(this.hasCart);
     this.cartService.getUserCart();
-    console.log(this.hasCart);
-
     this.hasCart = false;
     this.subscription$.push(
       this.store

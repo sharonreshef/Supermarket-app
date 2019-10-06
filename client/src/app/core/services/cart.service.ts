@@ -23,7 +23,6 @@ import { CartModel } from '../models/cart/cart.model';
 })
 export class CartService {
   private readonly BASE_URL = `http://localhost:3000/carts/`;
-  hascart: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -40,13 +39,8 @@ export class CartService {
   getUserCart() {
     this.http.get<CartModel>(this.BASE_URL).subscribe(async cart => {
       if (cart === null) {
-        this.hascart = false;
-        console.log('service hascart whan no cart', this.hascart);
         return false;
       } else {
-        this.hascart = true;
-        console.log('service hascart whan yes cart', this.hascart);
-
         await this.store.dispatch(new GetUserCart(cart));
         await localStorage.setItem('cartId', cart._id);
       }

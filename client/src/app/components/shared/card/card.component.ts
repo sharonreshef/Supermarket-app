@@ -86,6 +86,8 @@ export class CardComponent implements OnInit {
           this.cart = products;
           if (this.cart.find(p => p.productId === this.product._id)) {
             this.isInCart = true;
+          } else {
+            this.isInCart = false;
           }
         })
     );
