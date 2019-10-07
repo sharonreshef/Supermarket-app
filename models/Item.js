@@ -9,4 +9,7 @@ const ItemSchema = mongoose.Schema({
   cartId: { type: String, required: true }
 });
 
-module.exports = Item = mongoose.model('item', ItemSchema);
+const Item = mongoose.model('Item', ItemSchema);
+module.exports = Item;
+
+// module.exports = Item = mongoose.model('item', ItemSchema);

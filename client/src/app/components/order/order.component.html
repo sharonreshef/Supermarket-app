@@ -126,6 +126,10 @@
             "
             >Required Field</mdb-error
           >
+          <mdb-error
+            *ngIf="orderForm.get('creditCard').touched && orderForm.invalid"
+            >Credit card is invalid</mdb-error
+          >
         </div>
 
         <div class=" d-flex justify-content-center">

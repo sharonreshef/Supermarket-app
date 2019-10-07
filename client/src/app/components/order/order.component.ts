@@ -5,6 +5,9 @@ import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
 import { AppState } from 'src/app/core/store/app.state';
 import { Store, select } from '@ngrx/store';
 import { CreditCardValidator, CreditCard } from 'angular-cc-library';
+import { OrderModel } from 'src/app/core/models/order/order.model';
+import { OrderService } from 'src/app/core/services/order.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-order',
@@ -18,7 +21,11 @@ export class OrderComponent implements OnInit {
   total: number;
   minDate = new Date();
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppState>,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit() {
     this.orderForm = this.fb.group({
@@ -48,16 +55,30 @@ export class OrderComponent implements OnInit {
   order() {
     // this.spinner.show();
     const { city, street, date, creditCard } = this.orderForm.value;
-
+    const shippingDate = date.toISOString();
     this.orderForm.reset();
+
     console.log(
       this.products,
       this.total,
       city,
       street,
-      date,
+      shippingDate,
       creditCard.substr(-4, 4)
     );
+
+    const orderModel = new OrderModel(
+      this.products,
+      this.total,
+      city,
+      street,
+      shippingDate,
+      creditCard.substr(-4, 4)
+    );
+
+    console.log(orderModel);
+    this.orderService.order(orderModel);
+
     // console.log(CreditCardValidator.validateCCNumber(creditCard).ccNumber);
 
     // const loginModel = new LoginModel(username, password);

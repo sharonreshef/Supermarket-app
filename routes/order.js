@@ -16,13 +16,14 @@ router.get('/myorders', auth, async (req, res) => {
 
 // create order
 router.post('/', auth, async (req, res) => {
+  const customerID = req.customer.customerID;
+
   const {
-    customerID,
     products,
     totalPrice,
     city,
     street,
-    ShippingDate,
+    shippingDate,
     last4CreditDigit
   } = req.body;
 
@@ -32,7 +33,7 @@ router.post('/', auth, async (req, res) => {
     totalPrice,
     city,
     street,
-    ShippingDate,
+    shippingDate,
     last4CreditDigit
   });
   try {
