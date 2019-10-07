@@ -34,6 +34,8 @@ import { CartComponent } from './components/product/cart/cart.component';
 import { CartItemComponent } from './components/product/cart-item/cart-item.component';
 import { StartShoppingComponent } from './components/auth/start-shopping/start-shopping.component';
 import { NotificationsComponent } from './components/home-page/notifications/notifications.component';
+import { OrderComponent } from './components/order/order.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { NotificationsComponent } from './components/home-page/notifications/not
     CartComponent,
     CartItemComponent,
     StartShoppingComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    OrderComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,13 +4,42 @@ var Item = require('../models/Item');
 var auth = require('../middleware/auth');
 var Order = require('../models/Order');
 
+// get user orders
+router.get('/myorders', auth, async (req, res) => {
+  console.log(req.customer);
+  const customerID = req.customer.customerID;
+
+  Order.find({ creator: customerID }).then(orders => {
+    res.status(200).json(orders);
+  });
+});
+
 // create order
 router.post('/', auth, async (req, res) => {
-  const customerID = req.customer.customerID;
-  const products = req.body.products;
+  const {
+    customerID,
+    products,
+    totalPrice,
+    city,
+    street,
+    ShippingDate,
+    last4CreditDigit
+  } = req.body;
+  // const customerID = req.customer.customerID;
+  // const products = req.body.products;
+  // const totalPrice = req.body.totalPrice;
+  // const city = req.body.city;
+  // const street = req.body.street;
+  // const ShippingDate = req.body.ShippingDate;
+  // const last4CreditDigit = req.body.last4CreditDigit;
   const order = new Order({
     creator: customerID,
-    products
+    products,
+    totalPrice,
+    city,
+    street,
+    ShippingDate,
+    last4CreditDigit
   });
   try {
     const document = await order.save();

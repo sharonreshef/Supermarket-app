@@ -1,20 +1,8 @@
-<mdb-card class="product">
-  <div class="view overlay waves-light" mdbWavesEffect>
-    <!-- Card img -->
-    <mdb-card-img src="{{ product.image }}" alt="Card image cap"></mdb-card-img>
-    <a>
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
-  <!--Card content-->
-  <mdb-card-body>
-    <!--Title-->
-    <mdb-card-title>
-      <h4>{{ product.name }}</h4>
-    </mdb-card-title>
-
-    <!--Text-->
-    <mdb-card-text>{{ product.price }} $ </mdb-card-text>
+<div class="card" style="width: 18rem;">
+  <img src="{{ product.image }}" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.price }} $</p>
     <ng-container *ngIf="isAdmin; else userControls">
       <a
         routerLink="/admin/edit/{{ product._id }}"
@@ -28,18 +16,18 @@
       <!-- <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a> -->
       <div *ngIf="isInCart; else buyButton" class="product-quantity">
         <!-- <input
-          type="number"
-          (change)="setQuantity($event, product._id)"
-          value="{{ product.quantity }}"
-          min="1"
-        /> -->
+                type="number"
+                (change)="setQuantity($event, product._id)"
+                value="{{ product.quantity }}"
+                min="1"
+              /> -->
         <button (click)="remove()" mdbBtn color="danger">
           Remove
         </button>
       </div>
-      <ng-template #buyButton>
-        <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a>
-      </ng-template>
     </ng-template>
-  </mdb-card-body>
-</mdb-card>
+    <ng-template #buyButton>
+      <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a>
+    </ng-template>
+  </div>
+</div>

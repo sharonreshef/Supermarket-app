@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { UpdateCart } from 'src/app/core/store/cart/cart.actions';
 import { CartService } from 'src/app/core/services/cart.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   private subscription$: Subscription[] = [];
   constructor(
     private store: Store<AppState>,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -51,10 +53,11 @@ export class CartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  // checkout(){
-  //   // let checkout=new CheckoutModel(this.books);
-  //     this.chekoutService.checkout(this.books);
-  // }
+  checkout() {
+    // let checkout=new CheckoutModel(this.books);
+    // this.chekoutService.checkout(this.books);
+    this.router.navigate(['/order']);
+  }
 
   ngOnDestroy(): void {
     this.subscription$.forEach(sub => sub.unsubscribe());
