@@ -13,10 +13,12 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatStepperModule
+  MatStepperModule,
+  MatNativeDateModule
 } from '@angular/material';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,12 +59,15 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
   ],
   imports: [
     BrowserModule,
+    MatDatepickerModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    CreditCardDirectivesModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({}),
     MDBBootstrapModule.forRoot(),
     MatInputModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatToolbarModule,
     HttpClientModule,

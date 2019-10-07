@@ -26,6 +26,7 @@
     "@ngrx/store-devtools": "^7.4.0",
     "@types/chart.js": "^2.8.5",
     "angular-bootstrap-md": "^8.2.0",
+    "angular-cc-library": "^1.2.5",
     "animate.css": "^3.7.2",
     "chart.js": "^2.5.0",
     "hammerjs": "^2.0.8",

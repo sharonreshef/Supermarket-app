@@ -25,13 +25,7 @@ router.post('/', auth, async (req, res) => {
     ShippingDate,
     last4CreditDigit
   } = req.body;
-  // const customerID = req.customer.customerID;
-  // const products = req.body.products;
-  // const totalPrice = req.body.totalPrice;
-  // const city = req.body.city;
-  // const street = req.body.street;
-  // const ShippingDate = req.body.ShippingDate;
-  // const last4CreditDigit = req.body.last4CreditDigit;
+
   const order = new Order({
     creator: customerID,
     products,

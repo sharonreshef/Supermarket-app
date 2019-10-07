@@ -1,1 +1,145 @@
-<app-order-list></app-order-list>>
+<div class="container-fluid">
+  <h1 class="text-center">
+    your final order
+  </h1>
+  <div class="row mt-5">
+    <div class="col-9">
+      <app-order-list [products]="products"></app-order-list>
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <div class="totals">
+            <div class="totals-item totals-item-total">
+              <label>Grand Total</label>
+              <div class="totals-value" id="cart-total">
+                {{ total.toFixed(2) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <h4>Shipping Details:</h4>
+      <form (ngSubmit)="order()" [formGroup]="orderForm">
+        <div class="md-form mb-5">
+          <input
+            formControlName="city"
+            type="text"
+            id="defaultForm-city"
+            class="form-control validate"
+            mdbInput
+          />
+          <label data-error="wrong" data-success="right" for="defaultForm-city"
+            >City</label
+          >
+          <mdb-error
+            *ngIf="
+              orderForm.get('city').touched &&
+              orderForm.get('city').hasError('required')
+            "
+            >Required Field</mdb-error
+          >
+        </div>
+
+        <div class="md-form mb-4">
+          <input
+            formControlName="street"
+            type="text"
+            id="defaultForm-city"
+            class="form-control validate"
+            mdbInput
+          />
+          <label
+            data-error="wrong"
+            data-success="right"
+            for="defaultForm-street"
+            >Street</label
+          >
+          <mdb-error
+            *ngIf="
+              orderForm.get('street').touched &&
+              orderForm.get('street').hasError('required')
+            "
+            >Required Field</mdb-error
+          >
+        </div>
+        <div class="md-form mb-5">
+          <mat-form-field>
+            <input
+              matInput
+              [min]="minDate"
+              [matDatepicker]="picker"
+              formControlName="date"
+              type="text"
+              id="defaultForm-date"
+              class="form-control validate"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <!-- <input
+            formControlName="date"
+            type="text"
+            id="defaultForm-date"
+            class="form-control validate"
+            required
+            mdbInput
+          /> -->
+
+          <label data-error="wrong" data-success="right" for="defaultForm-date"
+            >Date</label
+          >
+          <mdb-error
+            *ngIf="
+              orderForm.get('date').touched &&
+              orderForm.get('date').hasError('required')
+            "
+            >Required Field</mdb-error
+          >
+        </div>
+        <h4>Payment:</h4>
+
+        <div class="md-form mb-4">
+          <input
+            id="cc-number"
+            type="tel"
+            autocomplete="cc-number"
+            ccNumber
+            formControlName="creditCard"
+            class="form-control validate"
+            mdbInput
+          />
+          <label
+            data-error="wrong"
+            data-success="right"
+            for="defaultForm-creditCard"
+            >Credit Card</label
+          >
+          <mdb-error
+            *ngIf="
+              orderForm.get('creditCard').touched &&
+              orderForm.get('creditCard').hasError('required')
+            "
+            >Required Field</mdb-error
+          >
+        </div>
+
+        <div class=" d-flex justify-content-center">
+          <button
+            [disabled]="orderForm.invalid"
+            mdbBtn
+            color="default"
+            class="waves-light"
+            mdbWavesEffect
+          >
+            Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
