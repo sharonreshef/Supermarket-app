@@ -36,7 +36,7 @@ function updateCart(state: CartState, id: string, quantity: number) {
   console.log(newProducts);
   const cartProduct = newProducts.find(p => p.productId === id);
   cartProduct.quantity = quantity;
-
+  console.log(newProducts);
   return {
     ...state,
     products: newProducts

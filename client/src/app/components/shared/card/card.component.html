@@ -13,17 +13,18 @@
       ></ng-container
     >
     <ng-template #userControls>
-      <!-- <a (click)="addToCart()" mdbBtn color="primary" mdbWavesEffect>Buy</a> -->
       <div *ngIf="isInCart; else buyButton" class="product-quantity">
-        <!-- <input
-                type="number"
-                (change)="setQuantity($event, product._id)"
-                value="{{ product.quantity }}"
-                min="1"
-              /> -->
         <button (click)="remove()" mdbBtn color="danger">
           Remove
         </button>
+        <div class="product-quantity">
+          <input
+            type="number"
+            (change)="setQuantity($event, product._id)"
+            value="{{ productQuantity }}"
+            min="1"
+          />
+        </div>
       </div>
     </ng-template>
     <ng-template #buyButton>

@@ -42,7 +42,6 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.productService.getAllProducts();
-    // this.cartService.getUserCart();
     this.subscribe$.push(
       this.store
         .select<ProductModel[]>(state => state.product.all)
@@ -66,6 +65,11 @@ export class ProductListComponent implements OnInit {
   }
   removeFromCart(productId: string) {
     this.cartService.removeItemFromCart(productId);
+  }
+
+  updateQuantity(quantityObj) {
+    const { id, newQuantity } = quantityObj;
+    this.cartService.updateCart(id, newQuantity);
   }
 
   ngOnDestroy(): void {

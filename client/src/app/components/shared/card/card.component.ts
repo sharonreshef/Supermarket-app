@@ -5,10 +5,8 @@ import { Product } from 'src/app/models/product.model';
 import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
-import { AddToCart } from 'src/app/core/store/cart/cart.actions';
 import { CartService } from 'src/app/core/services/cart.service';
 import { Subscription } from 'rxjs';
-import { ProductsComponent } from 'src/app/products/products.component';
 
 @Component({
   selector: 'app-card',
@@ -17,12 +15,18 @@ import { ProductsComponent } from 'src/app/products/products.component';
 })
 export class CardComponent implements OnInit {
   @Input() product: Product;
+
   @Output()
   removeItem = new EventEmitter();
+
+  @Output()
+  quantity = new EventEmitter();
+
   subscribe$: Subscription[] = [];
 
   isAdmin: boolean = false;
   isInCart: boolean = false;
+  productQuantity: number;
   route: Router;
   cart: CartProductModel[];
   constructor(
@@ -46,16 +50,15 @@ export class CardComponent implements OnInit {
       return;
     }
 
-    const productToAdd = new CartProductModel(
-      this.product._id,
-      this.product.name,
-      this.product.image,
-      this.product.price,
-      1
-    );
+    // const productToAdd = new CartProductModel(
+    //   this.product._id,
+    //   this.product.name,
+    //   this.product.image,
+    //   this.product.price,
+    //   1
+    // );
 
     const cartId = localStorage.getItem('cartId');
-    console.log(localStorage.getItem('cartId'));
     if (localStorage.getItem('cartId') !== null) {
       this.cartServics.addItemToCart(cartId, this.product._id);
     } else {
@@ -78,6 +81,11 @@ export class CardComponent implements OnInit {
       });
   }
 
+  setQuantity(event, id) {
+    const newQuantity = event.target.value;
+    this.quantity.emit({ newQuantity, id });
+  }
+
   ngOnInit() {
     this.subscribe$.push(
       this.store
@@ -86,6 +94,11 @@ export class CardComponent implements OnInit {
           this.cart = products;
           if (this.cart.find(p => p.productId === this.product._id)) {
             this.isInCart = true;
+            const cartProduct = this.cart.find(
+              p => p.productId === this.product._id
+            );
+            this.productQuantity = cartProduct.quantity;
+            console.log(this.productQuantity);
           } else {
             this.isInCart = false;
           }

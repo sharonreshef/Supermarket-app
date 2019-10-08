@@ -54,8 +54,6 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    // let checkout=new CheckoutModel(this.books);
-    // this.chekoutService.checkout(this.books);
     this.router.navigate(['/order']);
   }
 

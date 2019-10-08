@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
-import { CartService } from 'src/app/core/services/cart.service';
 import ProductModel from 'src/app/core/models/product/product.model';
 
 @Component({
