@@ -1,4 +1,7 @@
 <ng-template [ngIf]="hasCart">
-  you have open Cart from {{ date | date }}
+  you have open Cart from {{ openCartDate | date }}
 </ng-template>
-<ng-template [ngIf]="!hasCart">welcome {{ username }}</ng-template>
+<ng-template [ngIf]="!hasCart && hasOrder">
+  Your last pruchas was on {{ lastOrderDate | date }}
+</ng-template>
+<ng-template [ngIf]="!hasCart && !hasOrder">welcome {{ username }}</ng-template>

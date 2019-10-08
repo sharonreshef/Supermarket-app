@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private fb: FormBuilder,
-    private authService: AuthService,
-    private cartService: CartService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {

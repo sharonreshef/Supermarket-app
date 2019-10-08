@@ -10,13 +10,15 @@ import {
 import {
   GetUserCart,
   RemoveFromCart,
-  ClearCart
+  ClearCart,
+  AddToCart
 } from '../store/cart/cart.actions';
 import { Router } from '@angular/router';
 // import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map } from 'rxjs/operators';
 import { CartModel } from '../models/cart/cart.model';
+import { CartProductModel } from '../models/cart/cartProduct.model';
 
 @Injectable({
   providedIn: 'root'
@@ -62,9 +64,9 @@ export class CartService {
       quantity: 1
     };
     this.http
-      .post<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
-      .subscribe(cart => {
-        this.store.dispatch(new GetUserCart(cart));
+      .post<CartProductModel>(this.BASE_URL + `${cartId}`, itemToAdd)
+      .subscribe(itemToAdd => {
+        this.store.dispatch(new AddToCart(itemToAdd));
       });
   }
 

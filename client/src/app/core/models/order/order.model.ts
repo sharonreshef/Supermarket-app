@@ -7,6 +7,7 @@ export class OrderModel {
     public city: string,
     public street: string,
     public shippingDate: Date,
-    public last4CreditDigit: number
+    public last4CreditDigit: number,
+    public date?: Date
   ) {}
 }

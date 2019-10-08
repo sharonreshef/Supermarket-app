@@ -24,21 +24,6 @@ function getUserCart(state: CartState, cart: CartModel) {
 }
 
 function addToCart(state: CartState, product: CartProductModel) {
-  if (state.products.find(p => p.productId === product.productId)) {
-    const newProducts = state.products.slice();
-    const cartProduct = newProducts.find(
-      p => p.productId === product.productId
-    );
-    console.log(cartProduct);
-    cartProduct.quantity = +1;
-    return {
-      ...state,
-      products: newProducts
-    };
-  }
-  console.log(state);
-  console.log(state.products, product);
-
   return {
     ...state,
     products: [...state.products, product]

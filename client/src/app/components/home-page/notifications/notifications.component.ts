@@ -12,7 +12,9 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class NotificationsComponent implements OnInit {
   private subscription$: Subscription[] = [];
   hasCart: boolean = false;
-  date;
+  hasOrder: boolean = false;
+  openCartDate;
+  lastOrderDate;
   username: string;
 
   constructor(
@@ -29,7 +31,17 @@ export class NotificationsComponent implements OnInit {
         }
         if (cart.products.length > 0) {
           this.hasCart = true;
-          this.date = cart.dateCreated;
+          this.openCartDate = cart.dateCreated;
+        }
+      }),
+      this.store.pipe(select(state => state.order.orders)).subscribe(orders => {
+        if (orders === null) {
+          this.hasOrder = false;
+        }
+        if (orders.length > 0) {
+          this.hasOrder = true;
+          this.lastOrderDate = orders[orders.length - 1].date;
+          console.log(this.lastOrderDate);
         }
       })
     );

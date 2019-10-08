@@ -57,7 +57,7 @@ router.post('/:cartId', auth, async (req, res) => {
         if (err) {
           res.send(err);
         }
-        res.send(newCart);
+        res.send(item);
       }
     );
   } catch (e) {
