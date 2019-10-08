@@ -25,7 +25,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
-import { ProductsComponent } from './products/products.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NavigationComponent } from './components/shared/navigation/navigation.component';
 import { CardComponent } from './components/shared/card/card.component';
@@ -44,7 +43,6 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProductsComponent,
     HomePageComponent,
     NavigationComponent,
     CardComponent,
