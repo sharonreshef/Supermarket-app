@@ -1,7 +1,22 @@
-<div class="card-deck">
-  <app-card
-    *ngFor="let product of products"
-    [product]="product"
-    (removeItem)="removeFromCart($event)"
-  ></app-card>
+<div class="container">
+  <div class="row">
+    <p>
+      <input
+        #query
+        (keyup)="filter(query.value)"
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+      />
+    </p>
+  </div>
+  <div class="row">
+    <div class="card-deck">
+      <app-card
+        *ngFor="let product of filteredProducts"
+        [product]="product"
+        (removeItem)="removeFromCart($event)"
+      ></app-card>
+    </div>
+  </div>
 </div>

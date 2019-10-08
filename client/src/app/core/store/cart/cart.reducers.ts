@@ -9,6 +9,7 @@ import {
 } from './cart.actions';
 import { CartProductModel } from '../../models/cart/cartProduct.model';
 import { CartModel } from '../../models/cart/cart.model';
+import { stat } from 'fs';
 
 const initialState: CartState = {
   products: [],
@@ -31,8 +32,8 @@ function addToCart(state: CartState, product: CartProductModel) {
 }
 
 function updateCart(state: CartState, id: string, quantity: number) {
-  // debugger
   const newProducts = state.products.slice();
+  console.log(newProducts);
   const cartProduct = newProducts.find(p => p.productId === id);
   cartProduct.quantity = quantity;
 

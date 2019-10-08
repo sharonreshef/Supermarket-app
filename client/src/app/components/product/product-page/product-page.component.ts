@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
 import { CartService } from 'src/app/core/services/cart.service';
+import ProductModel from 'src/app/core/models/product/product.model';
 
 @Component({
   selector: 'app-product-page',
@@ -17,6 +18,7 @@ export class ProductPageComponent implements OnInit {
   isAdmin: boolean = false;
   opened: boolean;
   numOfItems: number;
+  products: ProductModel[];
   constructor(
     private authService: AuthService,
     private store: Store<AppState>

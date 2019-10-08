@@ -17,6 +17,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class ProductListComponent implements OnInit {
   @Output()
   products: ProductModel[];
+  filteredProducts: ProductModel[];
 
   subscribe$: Subscription[] = [];
 
@@ -34,15 +35,24 @@ export class ProductListComponent implements OnInit {
     this.spinner.show();
     this.productService.getAllProducts();
     this.cartService.getUserCart();
-
     this.subscribe$.push(
       this.store
         .select<ProductModel[]>(state => state.product.all)
         .subscribe(products => {
-          this.products = products;
+          console.log('PRODUCTS', products);
+          this.filteredProducts = this.products = products;
           this.spinner.hide();
         })
     );
+  }
+
+  filter(query: string) {
+    this.filteredProducts = query
+      ? this.products.filter(p =>
+          p.name.toLowerCase().includes(query.toLowerCase())
+        )
+      : this.products;
+    console.log(this.filteredProducts);
   }
 
   changePage(page) {

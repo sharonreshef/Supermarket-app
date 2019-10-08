@@ -11,7 +11,8 @@ import {
   GetUserCart,
   RemoveFromCart,
   ClearCart,
-  AddToCart
+  AddToCart,
+  UpdateCart
 } from '../store/cart/cart.actions';
 import { Router } from '@angular/router';
 // import { ToastrService } from "ngx-toastr";
@@ -78,9 +79,9 @@ export class CartService {
       quantity: quantity
     };
     this.http
-      .put<CartModel>(this.BASE_URL + `${cartId}`, itemToAdd)
-      .subscribe(cart => {
-        this.store.dispatch(new GetUserCart(cart));
+      .put<number>(this.BASE_URL + `${cartId}`, itemToAdd)
+      .subscribe(newQuantity => {
+        this.store.dispatch(new UpdateCart(id, newQuantity));
       });
   }
 

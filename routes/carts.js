@@ -85,7 +85,7 @@ router.put('/:cartId', [auth], async (req, res) => {
         if (err) {
           res.send(err);
         }
-        res.send(changedCart);
+        res.send(quantity);
       }
     );
   } catch (e) {
