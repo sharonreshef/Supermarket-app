@@ -53,18 +53,16 @@ export class TokenInterceptor implements HttpInterceptor {
   private saveCredentials(body) {
     const { payload } = body;
     const authToken = body.token;
-    const userId = payload.customerID;
     const isAdmin = payload.isAdmin;
-    const email = payload.email;
     const username = payload.username;
-    const orders = payload.orders.join(', ');
-
+    const city = payload.city;
+    const street = payload.street;
     localStorage.setItem('token', authToken);
-    localStorage.setItem('userId', userId);
+    localStorage.setItem('city', city);
     localStorage.setItem('isAdmin', isAdmin.toString());
-    localStorage.setItem('email', email);
+    localStorage.setItem('street', street);
     localStorage.setItem('username', username);
-    localStorage.setItem('orders', orders);
+
     // this.tostr.success(body.message);
   }
 }

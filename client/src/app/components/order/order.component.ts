@@ -25,7 +25,7 @@ export class OrderComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private orderService: OrderService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {
@@ -46,7 +46,16 @@ export class OrderComponent implements OnInit {
     );
   }
 
- 
+  fillUserCity() {
+    const city = localStorage.getItem('city');
+    this.orderForm.get('city').setValue(city);
+  }
+
+  fillUserStreet() {
+    const street = localStorage.getItem('street');
+    this.orderForm.get('street').setValue(street);
+  }
+
   private calculateTotal() {
     this.total = 0;
     for (const p of this.products) {

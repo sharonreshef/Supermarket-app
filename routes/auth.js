@@ -41,11 +41,11 @@ router.post(
         return res.status(400).send('Invalid Credentials');
       } else {
         const payload = {
-          email: customer.email,
           username: customer.firstName,
-          customerID: customer.customerID,
           isAdmin: customer.isAdmin,
-          orders: customer.orders
+          city: customer.city,
+          street: customer.street,
+          customerID: customer.customerID
         };
 
         const isMatch = await bcrypt.compare(password, customer.password);

@@ -74,6 +74,14 @@ export class AuthService {
     return localStorage.getItem('username');
   }
 
+  getUserCity() {
+    return localStorage.getItem('city');
+  }
+
+  getUserStreet() {
+    return localStorage.getItem('street');
+  }
+
   isAuth() {
     return !!localStorage.getItem('token');
   }
