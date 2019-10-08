@@ -37,6 +37,7 @@ import { StartShoppingComponent } from './components/auth/start-shopping/start-s
 import { NotificationsComponent } from './components/home-page/notifications/notifications.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
     StartShoppingComponent,
     NotificationsComponent,
     OrderComponent,
-    OrderListComponent
+    OrderListComponent,
+    ProductFilterComponent
   ],
   imports: [
     BrowserModule,

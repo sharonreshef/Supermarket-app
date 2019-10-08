@@ -7,8 +7,6 @@ import { animations } from './product-list-animation';
 import { Subscription } from 'rxjs';
 import ProductModel from 'src/app/core/models/product/product.model';
 import { CartService } from 'src/app/core/services/cart.service';
-import { Category } from 'src/app/core/models/product/category.model';
-import { CategoryService } from 'src/app/core/services/category.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +19,6 @@ export class ProductListComponent implements OnInit {
   @Output()
   products: ProductModel[] = [];
   filteredProducts: ProductModel[];
-  categories: Category[];
   subscribe$: Subscription[] = [];
   category: string;
 
@@ -31,7 +28,6 @@ export class ProductListComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private productService: ProductService,
     private store: Store<AppState>,
-    private categoryService: CategoryService,
     private cartService: CartService,
     route: ActivatedRoute
   ) {
@@ -46,10 +42,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.productService.getAllProducts();
-    this.cartService.getUserCart();
-    this.categoryService.getCategoriesFromServer().subscribe(categories => {
-      this.categories = categories;
-    });
+    // this.cartService.getUserCart();
     this.subscribe$.push(
       this.store
         .select<ProductModel[]>(state => state.product.all)
