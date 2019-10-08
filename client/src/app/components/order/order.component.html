@@ -1,21 +1,9 @@
 <div class="container-fluid">
-  <h1 class="text-center">
-    your final order
-  </h1>
   <div class="row mt-5">
     <div class="col-9">
       <app-order-list [products]="products"></app-order-list>
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <div class="totals">
-            <div class="totals-item totals-item-total">
-              <label>Grand Total</label>
-              <div class="totals-value" id="cart-total">
-                {{ total.toFixed(2) }}
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="row total">
+        <h4>Grand Total: {{ total.toFixed(2) }}$</h4>
       </div>
     </div>
     <div class="col-3">

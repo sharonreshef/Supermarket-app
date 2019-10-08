@@ -3,15 +3,22 @@
   clear: both;
   width: 100%;
   margin-bottom: 10px;
+  margin-right: 40px;
 }
 .totals .totals-item label {
   float: left;
   clear: both;
-  width: 79%;
+  width: 70%;
   text-align: right;
 }
 .totals .totals-item .totals-value {
   float: right;
   width: 21%;
   text-align: right;
+}
+
+.total {
+  margin-top: 15px;
+  float: right;
+  margin-right: 20px;
 }

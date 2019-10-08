@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/core/store/app.state';
 import { Store, select } from '@ngrx/store';
 import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
@@ -15,8 +16,11 @@ export class OrderListComponent implements OnInit {
   total: number;
 
   @Input() products: CartProductModel[];
+  backToShopping() {
+    this.router.navigate(['/products']);
+  }
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit() {
     // this.subscription$.push(

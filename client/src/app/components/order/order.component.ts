@@ -8,6 +8,7 @@ import { CreditCardValidator, CreditCard } from 'angular-cc-library';
 import { OrderModel } from 'src/app/core/models/order/order.model';
 import { OrderService } from 'src/app/core/services/order.service';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -24,7 +25,7 @@ export class OrderComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) {}
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class OrderComponent implements OnInit {
     );
   }
 
+ 
   private calculateTotal() {
     this.total = 0;
     for (const p of this.products) {
