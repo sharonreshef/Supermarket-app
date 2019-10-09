@@ -43,6 +43,7 @@ import { CreateComponent } from './components/admin/product/create/create.compon
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { AuthService } from './core/services/auth.service';
 import { AdminGuard } from './core/guards/admin-guard.service';
+import { InvoicePageComponent } from './components/invoice-page/invoice-page.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AdminGuard } from './core/guards/admin-guard.service';
     OrderListComponent,
     ProductFilterComponent,
     EditComponent,
-    CreateComponent
+    CreateComponent,
+    InvoicePageComponent
   ],
   imports: [
     BrowserModule,

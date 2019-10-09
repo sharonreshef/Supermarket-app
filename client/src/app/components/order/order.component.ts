@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { CreditCardValidator, CreditCard } from 'angular-cc-library';
 import { OrderModel } from 'src/app/core/models/order/order.model';
 import { OrderService } from 'src/app/core/services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -21,6 +22,7 @@ export class OrderComponent implements OnInit {
   minDate = new Date();
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private store: Store<AppState>,
     private orderService: OrderService
@@ -77,5 +79,6 @@ export class OrderComponent implements OnInit {
     );
 
     this.orderService.order(orderModel);
+    this.router.navigate(['/invoice']);
   }
 }

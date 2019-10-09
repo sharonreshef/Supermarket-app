@@ -8,6 +8,7 @@ import { EditComponent } from './components/admin/product/edit/edit.component';
 import { CreateComponent } from './components/admin/product/create/create.component';
 import { AuthGuard } from './core/guards/auth-guard.service';
 import { AdminGuard } from './core/guards/admin-guard.service';
+import { InvoicePageComponent } from './components/invoice-page/invoice-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -20,6 +21,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard] },
+  {
+    path: 'invoice',
+    component: InvoicePageComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'edit/:id', component: EditComponent, canActivate: [AdminGuard] },
   { path: 'create', component: CreateComponent, canActivate: [AdminGuard] }
 ];
