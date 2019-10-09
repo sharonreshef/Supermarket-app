@@ -34,17 +34,15 @@ export class ProductService {
     });
   }
 
-  // createBook(book: CreateBookModel) {
-  //     this.spinner.show();
-  //     this.http
-  //         .post(this.BASE_URL + 'create', book)
-  //         .subscribe((book) => {
-  //             this.store.dispatch(new CreateBook(book))
-  //             this.spinner.hide();
-  //             this.router.navigate(['/book/all'])
-  //             this.toastr.success('Product added successfully.')
-  //         })
-  // }
+  createProduct(product: ProductModel) {
+    this.spinner.show();
+    this.http.post(this.BASE_URL, product).subscribe(product => {
+      this.store.dispatch(new CreateProduct(product));
+      this.spinner.hide();
+      this.router.navigate(['/products']);
+      // this.toastr.success('Product added successfully.')
+    });
+  }
 
   editProduct(product: ProductModel) {
     this.spinner.show();

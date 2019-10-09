@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row space-top text-center">
     <div class="col-md-12">
-      <h1 class="name">Edit Product:</h1>
+      <h1 class="name">Add new Product:</h1>
     </div>
   </div>
-  <form [formGroup]="editProductForm" (ngSubmit)="edit()">
+  <form [formGroup]="createProductForm" (ngSubmit)="create()">
     <div class="row space-top">
       <div class="col-md-6">
         <div class="form-group">
@@ -18,8 +18,8 @@
           <div class="col-sm-6">
             <small
               *ngIf="
-                editProductForm.get('name').touched &&
-                editProductForm.get('name').hasError('required')
+                createProductForm.get('name').touched &&
+                createProductForm.get('name').hasError('required')
               "
               class="text-danger"
             >
@@ -27,8 +27,8 @@
             </small>
             <small
               *ngIf="
-                editProductForm.get('name').touched &&
-                editProductForm.get('name').hasError('minlength')
+                createProductForm.get('name').touched &&
+                createProductForm.get('name').hasError('minlength')
               "
               class="text-danger"
             >
@@ -61,8 +61,8 @@
           <div class="col-sm-6">
             <small
               *ngIf="
-                editProductForm.get('price').touched &&
-                editProductForm.get('price').hasError('required')
+                createProductForm.get('price').touched &&
+                createProductForm.get('price').hasError('required')
               "
               class="text-danger"
             >
@@ -70,8 +70,8 @@
             </small>
             <small
               *ngIf="
-                editProductForm.get('price').touched &&
-                editProductForm.get('price').hasError('min')
+                createProductForm.get('price').touched &&
+                createProductForm.get('price').hasError('min')
               "
               class="text-danger"
             >
@@ -83,8 +83,8 @@
         <div class="form-group">
           <label class="form-control-label" for="image">Image Url</label>
           <input
-            formControlName="image"
             #image
+            formControlName="image"
             type="text"
             id="defaultForm-image"
             class="form-control validate"
@@ -92,8 +92,8 @@
           <div class="col-sm-6">
             <small
               *ngIf="
-                editProductForm.get('image').touched &&
-                editProductForm.get('image').hasError('required')
+                createProductForm.get('image').touched &&
+                createProductForm.get('image').hasError('required')
               "
               class="text-danger"
             >
@@ -101,8 +101,8 @@
             </small>
             <small
               *ngIf="
-                editProductForm.get('image').touched &&
-                editProductForm.get('image').hasError('pattern')
+                createProductForm.get('image').touched &&
+                createProductForm.get('image').hasError('pattern')
               "
               class="text-danger"
             >
@@ -110,7 +110,6 @@
             </small>
           </div>
         </div>
-
         <div class="row">
           <div class="col-4">
             <img
@@ -123,8 +122,8 @@
             <input
               type="submit"
               class="btn btn-warning"
-              value="Edit"
-              [disabled]="editProductForm.invalid"
+              value="Create"
+              [disabled]="createProductForm.invalid"
             />
           </div>
         </div>
