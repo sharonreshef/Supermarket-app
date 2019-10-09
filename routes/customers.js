@@ -102,9 +102,8 @@ router.post('/checkID', async (req, res) => {
 
   try {
     let customer = await Customer.findOne({ customerID });
-
     if (customer) {
-      return res.status(400).send('Customer already exists');
+      return res.status(200).json(false);
     } else {
       res.json(true);
     }

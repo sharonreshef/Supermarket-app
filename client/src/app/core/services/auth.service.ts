@@ -18,22 +18,20 @@ export class AuthService {
     private router: Router
   ) {}
 
-  // isIDUniqe;
-
-  // checkID(customerID: string) {
-  //   const body = {
-  //     customerID: customerID
-  //   };
-  //   this.http
-  //     .post('http://localhost:3000/customers/checkID', body)
-  //     .subscribe(response => {
-  //       if(response.status === 200)
-  //     });
-  // }
-  // getUniqe() {
-  //   console.log(this.isIDUniqe);
-  //   return this.isIDUniqe;
-  // }
+  isIdUnique: boolean = false;
+  checkID(customerID: string) {
+    const body = {
+      customerID: customerID
+    };
+    this.http
+      .post<boolean>('http://localhost:3000/customers/checkID', body)
+      .subscribe(response => {
+        if (response) this.isIdUnique = true;
+        else {
+          this.isIdUnique = false;
+        }
+      });
+  }
 
   createUser(
     email: string,

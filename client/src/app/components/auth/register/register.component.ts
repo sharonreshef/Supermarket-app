@@ -14,15 +14,24 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(e, form: NgForm) {
     e.preventDefault();
-    console.log(form.value.id);
     this.formValues1 = form.value;
-    // this.authService.checkID(form.value.id);
-    // this.next = this.authService.getUniqe();
-    // console.log(this.next);
-    this.formValues1 = form.value;
-    if (form.value.password !== form.value.passwordconfirm) {
+    this.authService.checkID(form.value.id);
+    if (
+      !this.authService.isIdUnique &&
+      form.value.password === form.value.passwordconfirm
+    ) {
+      alert('User With this ID already exists');
+    }
+    if (
+      form.value.password !== form.value.passwordconfirm &&
+      !this.authService.isIdUnique
+    ) {
       alert('must be same password');
-    } else {
+    }
+    if (
+      form.value.password === form.value.passwordconfirm &&
+      this.authService.isIdUnique
+    ) {
       this.next = true;
     }
   }
