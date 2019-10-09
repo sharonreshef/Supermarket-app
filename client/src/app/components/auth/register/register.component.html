@@ -1,140 +1,234 @@
-<mat-card>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form
-    (submit)="onSubmit($event, submitForm)"
-    #submitForm="ngForm"
-    *ngIf="!isLoading"
-  >
-    <mat-form-field>
-      <input
-        name="email"
-        matInput
-        ngModel
-        placeholder="E-mail"
-        #emailInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="emailInput.invalid">please enter valid mail</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        type="password"
-        name="password"
-        matInput
-        ngModel
-        placeholder="Password"
-        #passwordInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="passwordInput.invalid">password not valid</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        type="password"
-        name="passwordconfirm"
-        matInput
-        ngModel
-        placeholder="Password confirm"
-        #passwordInputConfirm="ngModel"
-        required
-      />
-      <!-- <mat-error *ngIf="passwordInput.">password not match</mat-error> -->
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        name="id"
-        matInput
-        ngModel
-        placeholder="id"
-        #idInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="idInput.invalid">please enter valid id</mat-error>
-    </mat-form-field>
-
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit"
-      [disabled]="
-        passwordInput.invalid ||
-        emailInput.invalid ||
-        idInput.invalid ||
-        passwordInputConfirm.invalid
-      "
+<form (ngSubmit)="onSubmit()" [formGroup]="registerForm1">
+  <div class="md-form mb-5">
+    <i class="fas fa-envelope prefix grey-text"></i>
+    <input
+      formControlName="email"
+      type="email"
+      id="defaultForm-email"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-email"
+      >Your email</label
     >
-      continue
-    </button>
-  </form>
-</mat-card>
-<mat-card *ngIf="next">
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form
-    (submit)="onSubmit2($event, submitForm2)"
-    #submitForm2="ngForm"
-    *ngIf="!isLoading"
-  >
-    <mat-form-field>
-      <input
-        name="city"
-        matInput
-        ngModel
-        placeholder="city"
-        #cityInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="cityInput.invalid">please enter valid city</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input
-        name="street"
-        matInput
-        ngModel
-        placeholder="street"
-        #streetInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="streetInput.invalid"
-        >please enter valid streeet</mat-error
-      >
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        name="name"
-        matInput
-        ngModel
-        placeholder="name"
-        #nameInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="nameInput.invalid">please enter valid name</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        name="lastName"
-        matInput
-        ngModel
-        placeholder="lastName"
-        #lastNameInput="ngModel"
-        required
-      />
-      <mat-error *ngIf="lastNameInput.invalid"
-        >please enter valid lastName</mat-error
-      >
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit"
-      [disabled]="
-        cityInput.invalid ||
-        streetInput.invalid ||
-        nameInput.invalid ||
-        lastNameInput.invalid
+    <mdb-error
+      *ngIf="
+        registerForm1.get('email').touched &&
+        registerForm1.get('email').hasError('required')
       "
+      >Required Field</mdb-error
     >
-      register
+    <mdb-error
+      *ngIf="
+        registerForm1.get('email').touched &&
+        registerForm1.get('email').hasError('email')
+      "
+      >Not valid email</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="password"
+      type="password"
+      id="defaultForm-password"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-password"
+      >Your password</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('password').touched &&
+        registerForm1.get('password').hasError('required')
+      "
+      >Password is required!</mdb-error
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('password').touched &&
+        registerForm1.get('password').hasError('minlength')
+      "
+      >Your password must be at least 6 symbols</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="password2"
+      type="password"
+      id="defaultForm-password2"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-password2"
+      >Confirm password</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('password2').touched &&
+        registerForm1.get('password2').hasError('required')
+      "
+      >Please type passwors again</mdb-error
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('password2').touched &&
+        registerForm1.get('password2').hasError('minlength')
+      "
+      >Your password must be at least 6 symbols</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="id"
+      type="text"
+      id="defaultForm-id"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-id"
+      >ID</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('id').touched &&
+        registerForm1.get('id').hasError('required')
+      "
+      >ID Is required!</mdb-error
+    >
+    <mdb-error
+      *ngIf="
+        registerForm1.get('id').touched &&
+        registerForm1.get('id').hasError('minlength')
+      "
+      >ID must be at least 9 symbols</mdb-error
+    >
+  </div>
+
+  <div class=" d-flex justify-content-center">
+    <button
+      type="submit"
+      [disabled]="registerForm1.invalid"
+      mdbBtn
+      color="default"
+      class="waves-light"
+      mdbWavesEffect
+    >
+      Next
     </button>
-  </form>
-</mat-card>
+  </div>
+</form>
+
+<form *ngIf="next" (ngSubmit)="onSubmit2()" [formGroup]="registerForm2">
+  <div class="md-form mb-5">
+    <i class="fas fa-envelope prefix grey-text"></i>
+    <input
+      formControlName="city"
+      type="text"
+      id="defaultForm-city"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-city"
+      >City</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm2.get('city').touched &&
+        registerForm2.get('city').hasError('required')
+      "
+      >Required Field</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="street"
+      type="text"
+      id="defaultForm-street"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-street"
+      >Street</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm2.get('street').touched &&
+        registerForm2.get('street').hasError('required')
+      "
+      >Required Field</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="firstName"
+      type="text"
+      id="defaultForm-firstName"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-firstName"
+      >First Name</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm2.get('firstName').touched &&
+        registerForm2.get('firstName').hasError('required')
+      "
+      >Required Field</mdb-error
+    >
+  </div>
+
+  <div class="md-form mb-4">
+    <i class="fas fa-lock prefix grey-text"></i>
+    <input
+      formControlName="lastName"
+      type="text"
+      id="defaultForm-lastName"
+      class="form-control validate"
+      mdbInput
+    />
+    <label data-error="wrong" data-success="right" for="defaultForm-lastName"
+      >Last Name</label
+    >
+    <mdb-error
+      *ngIf="
+        registerForm2.get('lastName').touched &&
+        registerForm2.get('lastName').hasError('required')
+      "
+      >Required Field</mdb-error
+    >
+  </div>
+
+  <div class=" d-flex justify-content-center">
+    <button
+      [disabled]="registerForm2.invalid"
+      mdbBtn
+      color="default"
+      class="waves-light"
+      mdbWavesEffect
+    >
+      Register
+    </button>
+    <!-- <button
+      type="button"
+      mdbBtn
+      color="primary"
+      outline="true"
+      [routerLink]="['']"
+      class="waves-light"
+    >
+      Login
+    </button> -->
+  </div>
+</form>

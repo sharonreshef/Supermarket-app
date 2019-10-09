@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -8,49 +8,62 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerForm1: FormGroup;
+  registerForm2: FormGroup;
   next: Boolean = false;
-  formValues1;
+  registerForm1Values;
+  registerForm2Values;
   formValues2;
 
-  onSubmit(e, form: NgForm) {
-    e.preventDefault();
-    this.formValues1 = form.value;
-    this.authService.checkID(form.value.id);
-    if (
-      !this.authService.isIdUnique &&
-      form.value.password === form.value.passwordconfirm
-    ) {
+  async checkIdValue(id) {
+    await this.authService.checkID(id);
+    if (!this.authService.isIdUnique) {
       alert('User With this ID already exists');
+      return;
     }
+    return;
+  }
+
+  onSubmit() {
+    this.registerForm1Values = this.registerForm1.value;
+    this.checkIdValue(this.registerForm1Values.id);
     if (
-      form.value.password !== form.value.passwordconfirm &&
-      !this.authService.isIdUnique
+      this.registerForm1Values.password !== this.registerForm1Values.password2
     ) {
       alert('must be same password');
-    }
-    if (
-      form.value.password === form.value.passwordconfirm &&
-      this.authService.isIdUnique
-    ) {
+    } else {
       this.next = true;
+      console.log(this.next);
     }
   }
-  onSubmit2(e, form: NgForm) {
-    e.preventDefault();
-    console.log(form.value);
-    this.formValues2 = form.value;
+  onSubmit2() {
+    console.log(this.registerForm2.value);
+    this.registerForm2Values = this.registerForm2.value;
 
     this.authService.createUser(
-      this.formValues1.email,
-      this.formValues1.password,
-      this.formValues1.id,
-      this.formValues2.city,
-      this.formValues2.street,
-      this.formValues2.name,
-      this.formValues2.lastName
+      this.registerForm1Values.email,
+      this.registerForm1Values.password,
+      this.registerForm1Values.id,
+      this.registerForm2Values.city,
+      this.registerForm2Values.street,
+      this.registerForm2Values.firstName,
+      this.registerForm2Values.lastName
     );
   }
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private fb: FormBuilder) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.registerForm1 = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      password2: [null, [Validators.required, Validators.minLength(6)]],
+      id: [null, [Validators.required, Validators.minLength(9)]]
+    });
+    this.registerForm2 = this.fb.group({
+      city: [null, [Validators.required]],
+      street: [null, [Validators.required]],
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]]
+    });
+  }
 }

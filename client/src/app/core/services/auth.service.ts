@@ -36,7 +36,7 @@ export class AuthService {
   createUser(
     email: string,
     password: string,
-    customerID: number,
+    id: number,
     city: string,
     street: string,
     firstName: string,
@@ -45,15 +45,17 @@ export class AuthService {
     const body: RegisterModel = {
       email: email,
       password: password,
-      customerID: customerID,
+      customerID: id,
       city: city,
       street: street,
       firstName: firstName,
       lastName: lastName
     };
+    console.log(body);
     this.http
       .post('http://localhost:3000/customers', body)
       .subscribe(response => {
+        console.log(response);
         this.router.navigate(['']);
       });
   }
