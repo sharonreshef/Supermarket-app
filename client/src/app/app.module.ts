@@ -40,6 +40,9 @@ import { OrderListComponent } from './components/order/order-list/order-list.com
 import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
 import { EditComponent } from './components/admin/product/edit/edit.component';
 import { CreateComponent } from './components/admin/product/create/create.component';
+import { AuthGuard } from './core/guards/auth-guard.service';
+import { AuthService } from './core/services/auth.service';
+import { AdminGuard } from './core/guards/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,11 @@ import { CreateComponent } from './components/admin/product/create/create.compon
     MatProgressSpinnerModule,
     MatStepperModule
   ],
+  entryComponents: [HomePageComponent],
   providers: [
+    AuthService,
+    AuthGuard,
+    AdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

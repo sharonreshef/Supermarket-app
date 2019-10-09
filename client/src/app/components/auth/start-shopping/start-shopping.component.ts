@@ -39,7 +39,7 @@ export class StartShoppingComponent implements OnInit {
     this.orderService.getUserOrders();
     this.subscription$.push(
       this.store.pipe(select(state => state.order)).subscribe(orders => {
-        if (orders.orders.length > 0) {
+        if (orders.userOrders.length > 0) {
           this.hasOrder = true;
         } else {
           this.hasOrder = false;

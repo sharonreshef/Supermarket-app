@@ -34,15 +34,17 @@ export class NotificationsComponent implements OnInit {
           this.openCartDate = cart.dateCreated;
         }
       }),
-      this.store.pipe(select(state => state.order.orders)).subscribe(orders => {
-        if (orders === null) {
-          this.hasOrder = false;
-        }
-        if (orders.length > 0) {
-          this.hasOrder = true;
-          this.lastOrderDate = orders[orders.length - 1].date;
-        }
-      })
+      this.store
+        .pipe(select(state => state.order.userOrders))
+        .subscribe(orders => {
+          if (orders === null) {
+            this.hasOrder = false;
+          }
+          if (orders.length > 0) {
+            this.hasOrder = true;
+            this.lastOrderDate = orders[orders.length - 1].date;
+          }
+        })
     );
   }
 }

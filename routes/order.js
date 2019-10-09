@@ -4,6 +4,11 @@ var Item = require('../models/Item');
 var auth = require('../middleware/auth');
 var Order = require('../models/Order');
 
+router.get('/', async (req, res) => {
+  const orders = await Order.find().exec();
+  res.status(200).json(orders.length);
+});
+
 // get user orders
 router.get('/myorders', auth, async (req, res) => {
   const customerID = req.customer.customerID;

@@ -6,7 +6,11 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { ClearCart } from '../store/cart/cart.actions';
 import { CartService } from './cart.service';
-import { GetUserOrders, AddToOrders } from '../store/order/order.actions';
+import {
+  GetUserOrders,
+  AddToOrders,
+  UpdateOrdersNum
+} from '../store/order/order.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +29,14 @@ export class OrderService {
       .subscribe(order => {
         this.store.dispatch(new AddToOrders(order));
         this.cartService.clearCart();
+      });
+  }
+
+  getNumOfOrders() {
+    this.http
+      .get<number>('http://localhost:3000/order')
+      .subscribe(numOfOrders => {
+        this.store.dispatch(new UpdateOrdersNum(numOfOrders));
       });
   }
 

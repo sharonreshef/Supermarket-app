@@ -5,7 +5,7 @@ import { OrderModel } from '../../models/order/order.model';
 
 export const GET_USER_ORDERS = '[ORDER] GET';
 export const ADD_TO_ORDERS = '[ORDER] ADD';
-export const UPDATE_CART = '[CART] UPDATE CART';
+export const UPDATE_ORDERS_NUM = '[ORDER] UPDATE ORDERS NUM';
 export const REMOVE_FROM_CART = '[CART] REMOVE';
 export const CLEAR_CART = '[CART] CLEAR';
 
@@ -20,10 +20,10 @@ export class AddToOrders implements Action {
   constructor(public payload: OrderModel) {}
 }
 
-export class UpdateCart implements Action {
-  readonly type: string = UPDATE_CART;
+export class UpdateOrdersNum implements Action {
+  readonly type: string = UPDATE_ORDERS_NUM;
 
-  constructor(public id: string, public quantity: number) {}
+  constructor(public num: number) {}
 }
 
 export class RemoveFromCart implements Action {
