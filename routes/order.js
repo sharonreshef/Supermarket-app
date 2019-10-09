@@ -6,7 +6,6 @@ var Order = require('../models/Order');
 
 // get user orders
 router.get('/myorders', auth, async (req, res) => {
-  console.log(req.customer);
   const customerID = req.customer.customerID;
 
   Order.find({ creator: customerID }).then(orders => {

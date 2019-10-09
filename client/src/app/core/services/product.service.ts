@@ -46,26 +46,12 @@ export class ProductService {
   //         })
   // }
 
-  editBook(productModel: ProductModel) {
+  editProduct(product: ProductModel) {
     this.spinner.show();
-    this.http
-      .post(this.BASE_URL + `/${productModel._id}`, productModel)
-      .subscribe(res => {
-        this.store.dispatch(new EditProduct(res));
-        this.spinner.hide();
-        // this.router.navigate(['/']);
-      });
+    this.http.put(this.BASE_URL + `/${product._id}`, product).subscribe(res => {
+      this.store.dispatch(new EditProduct(res));
+      this.spinner.hide();
+      this.router.navigate(['/products']);
+    });
   }
-
-  // deleteBook(book: BookModel, activeModal) {
-  //     this.spinner.show();
-  //     this.http
-  //         .delete(this.BASE_URL + `delete/${book._id}`)
-  //         .subscribe(() => {
-  //             this.store.dispatch(new DeleteBook(book));
-  //             this.spinner.hide();
-  //             activeModal.close();
-  //             this.router.navigate(['/book/all']);
-  //         })
-  // }
 }

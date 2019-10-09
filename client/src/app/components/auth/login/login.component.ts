@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormControl, Validators, NgForm } from '@angular/forms';
-// import { AuthService } from '../auth.service';
-import {
-  Validators,
-  FormsModule,
-  FormGroup,
-  FormBuilder
-} from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LoginModel } from 'src/app/core/models/auth/login.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-login',

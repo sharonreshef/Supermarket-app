@@ -3,7 +3,6 @@ import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
 import { Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/core/store/app.state';
-import { UpdateCart } from 'src/app/core/store/cart/cart.actions';
 import { CartService } from 'src/app/core/services/cart.service';
 import { Router } from '@angular/router';
 @Component({

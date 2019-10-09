@@ -62,7 +62,9 @@ export class AuthService {
 
   login(body: LoginModel) {
     this.http.post('http://localhost:3000/auth', body).subscribe(response => {
-      console.log(response);
+      if (this.getIsAdmin) {
+      }
+      this.router.navigate(['/products']);
     });
   }
 

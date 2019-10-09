@@ -7,8 +7,6 @@ import { Store, select } from '@ngrx/store';
 import { CreditCardValidator, CreditCard } from 'angular-cc-library';
 import { OrderModel } from 'src/app/core/models/order/order.model';
 import { OrderService } from 'src/app/core/services/order.service';
-import * as moment from 'moment';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -69,15 +67,6 @@ export class OrderComponent implements OnInit {
     const shippingDate = date.toISOString();
     this.orderForm.reset();
 
-    console.log(
-      this.products,
-      this.total,
-      city,
-      street,
-      shippingDate,
-      creditCard.substr(-4, 4)
-    );
-
     const orderModel = new OrderModel(
       this.products,
       this.total,
@@ -87,15 +76,6 @@ export class OrderComponent implements OnInit {
       creditCard.substr(-4, 4)
     );
 
-    console.log(orderModel);
     this.orderService.order(orderModel);
-
-    // console.log(CreditCardValidator.validateCCNumber(creditCard).ccNumber);
-
-    // const loginModel = new LoginModel(username, password);
-    // this.authService.login(loginModel);
-    // this.orderForm.reset();
-    // console.log(city, street, date, creditCard.substr(-4, 4));
-    // console.log(CreditCardValidator.validateCCNumber(creditCard));
   }
 }

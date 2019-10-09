@@ -5,7 +5,6 @@ import { AppState } from 'src/app/core/store/app.state';
 import { CartProductModel } from 'src/app/core/models/cart/cartProduct.model';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
-import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-home-page',
@@ -24,7 +23,6 @@ export class HomePageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private productService: ProductService,
-    private cartService: CartService,
     private store: Store<AppState>
   ) {}
 
@@ -41,7 +39,6 @@ export class HomePageComponent implements OnInit {
         .pipe(select(state => state.product.all))
         .subscribe(products => {
           this.numOfProducts = products.length;
-          console.log(this.numOfProducts);
         })
     );
   }

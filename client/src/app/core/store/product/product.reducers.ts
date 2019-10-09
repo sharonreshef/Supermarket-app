@@ -26,13 +26,6 @@ function editProduct(state, action) {
   };
 }
 
-// function deleteProduct(state, action) {
-//     return {
-//         ...state,
-//         all: [...state.all.filter(p => p._id !== action._id)]
-//     }
-// }
-
 export function productReducer(
   state: ProductState = initialState,
   action: ProductActions.Types
@@ -46,9 +39,6 @@ export function productReducer(
 
     case ProductActions.EDIT_PRODUCT:
       return editProduct(state, action.payload);
-
-    // case ProductActions.DELETE_PRODUCT:
-    //     return deleteProduct(state, action.payload);
     default:
       return state;
   }

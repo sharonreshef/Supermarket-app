@@ -1,11 +1,9 @@
 const Customer = require('../models/Customer');
 
 module.exports = async function(req, res, next) {
-  console.log(req.customer);
   const customer = await Customer.findOne({
-    customerID: req.customer.id
+    customerID: req.customer.customerID
   }).exec();
-  console.log(customer);
 
   try {
     if (customer.isAdmin === null) {

@@ -41,7 +41,6 @@ export class NotificationsComponent implements OnInit {
         if (orders.length > 0) {
           this.hasOrder = true;
           this.lastOrderDate = orders[orders.length - 1].date;
-          console.log(this.lastOrderDate);
         }
       })
     );

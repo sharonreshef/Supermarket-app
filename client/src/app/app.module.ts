@@ -38,6 +38,7 @@ import { NotificationsComponent } from './components/home-page/notifications/not
 import { OrderComponent } from './components/order/order.component';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
 import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
+import { EditComponent } from './components/admin/product/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ProductFilterComponent } from './components/product/product-filter/prod
     NotificationsComponent,
     OrderComponent,
     OrderListComponent,
-    ProductFilterComponent
+    ProductFilterComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

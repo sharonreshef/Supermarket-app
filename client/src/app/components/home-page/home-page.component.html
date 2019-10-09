@@ -4,17 +4,6 @@
       <div class="row">
         <ng-template [ngIf]="isAuth && !isAdmin">
           <app-start-shopping></app-start-shopping>
-          <!-- <div>
-            <button
-              mdbBtn
-              color="default"
-              class="waves-light"
-              mdbWavesEffect
-              routerLink="products"
-            >
-              Start Shopping
-            </button>
-          </div> -->
         </ng-template>
       </div>
       <app-login></app-login>
@@ -29,28 +18,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="home-container">
-  <div class="home-wrapper">
-    <div class="login home-item">
-      <ng-template [ngIf]="isAuth">
-        <div class="start-shopping">
-          <button
-            mdbBtn
-            color="default"
-            class="waves-light"
-            mdbWavesEffect
-            routerLink="products"
-          >
-            Start Shopping
-          </button>
-        </div>
-      </ng-template>
-      <div class="for">
-        <app-login></app-login>
-      </div>
-    </div>
-    <div class="promo home-item">Why you should buy from our store</div>
-    <div class="details home-item">Store details</div>
-  </div>
-</div> -->

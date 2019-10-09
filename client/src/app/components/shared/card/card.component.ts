@@ -50,14 +50,6 @@ export class CardComponent implements OnInit {
       return;
     }
 
-    // const productToAdd = new CartProductModel(
-    //   this.product._id,
-    //   this.product.name,
-    //   this.product.image,
-    //   this.product.price,
-    //   1
-    // );
-
     const cartId = localStorage.getItem('cartId');
     if (localStorage.getItem('cartId') !== null) {
       this.cartServics.addItemToCart(cartId, this.product._id);
@@ -98,7 +90,6 @@ export class CardComponent implements OnInit {
               p => p.productId === this.product._id
             );
             this.productQuantity = cartProduct.quantity;
-            console.log(this.productQuantity);
           } else {
             this.isInCart = false;
           }

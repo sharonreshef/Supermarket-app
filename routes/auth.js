@@ -34,7 +34,6 @@ router.post(
     const { username, password } = req.body;
 
     try {
-      console.log(req);
       let customer = await Customer.findOne({ email: username });
 
       if (!customer) {
