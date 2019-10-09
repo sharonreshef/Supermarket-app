@@ -3,11 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import {
-  GetAllProducts,
-  CreateProduct,
-  EditProduct
-} from '../store/product/product.actions';
-import {
   GetUserCart,
   RemoveFromCart,
   ClearCart,
@@ -15,7 +10,6 @@ import {
   UpdateCart
 } from '../store/cart/cart.actions';
 import { Router } from '@angular/router';
-// import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { map } from 'rxjs/operators';
 import { CartModel } from '../models/cart/cart.model';
@@ -31,7 +25,6 @@ export class CartService {
     private http: HttpClient,
     private store: Store<AppState>,
     private router: Router,
-    // private toastr: ToastrService,
     private spinner: NgxSpinnerService
   ) {}
 
@@ -93,31 +86,7 @@ export class CartService {
     });
   }
 
-  // createBook(book: CreateBookModel) {
-  //     this.spinner.show();
-  //     this.http
-  //         .post(this.BASE_URL + 'create', book)
-  //         .subscribe((book) => {
-  //             this.store.dispatch(new CreateBook(book))
-  //             this.spinner.hide();
-  //             this.router.navigate(['/book/all'])
-  //             this.toastr.success('Product added successfully.')
-  //         })
-  // }
-
-  //   editBook(productModel: ProductModel) {
-  //     this.spinner.show();
-  //     this.http
-  //       .post(this.BASE_URL + `/${productModel._id}`, productModel)
-  //       .subscribe(res => {
-  //         this.store.dispatch(new EditProduct(res));
-  //         this.spinner.hide();
-  //         // this.router.navigate(['/']);
-  //       });
-  //   }
-
   removeItemFromCart(productId: string) {
-    // this.spinner.show();
     const cartId = localStorage.getItem('cartId');
     this.http
       .delete<CartModel>(this.BASE_URL + `${cartId}/delete/${productId}`)

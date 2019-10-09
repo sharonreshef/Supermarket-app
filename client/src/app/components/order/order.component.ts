@@ -64,7 +64,6 @@ export class OrderComponent implements OnInit {
   }
 
   order() {
-    // this.spinner.show();
     const { city, street, date, creditCard } = this.orderForm.value;
     const shippingDate = date.toISOString();
     this.orderForm.reset();

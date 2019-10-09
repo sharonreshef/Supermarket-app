@@ -6,16 +6,12 @@ import {
   HttpHandler,
   HttpEvent
 } from '@angular/common/http';
-// import { ToastrService } from "ngx-toastr";
 import { tap } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(
-    // private tostr: ToastrService,
-    public authService: AuthService
-  ) {}
+  constructor(public authService: AuthService) {}
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (req.url.endsWith('auth')) {
       req = req.clone({
@@ -43,7 +39,6 @@ export class TokenInterceptor implements HttpInterceptor {
           res.body &&
           req.url.endsWith('products')
         ) {
-          // this.tostr.success(res.body.message)
           this.saveCredentials(res.body);
         }
       })
@@ -62,7 +57,5 @@ export class TokenInterceptor implements HttpInterceptor {
     localStorage.setItem('isAdmin', isAdmin.toString());
     localStorage.setItem('street', street);
     localStorage.setItem('username', username);
-
-    // this.tostr.success(body.message);
   }
 }

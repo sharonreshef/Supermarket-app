@@ -24,7 +24,6 @@ function getUserOrder(state: OrderState, orders: [OrderModel]) {
 }
 
 function updateOrdersNum(state: OrderState, num: number) {
-  console.log(num);
   return {
     ...state,
     numOfOrders: num

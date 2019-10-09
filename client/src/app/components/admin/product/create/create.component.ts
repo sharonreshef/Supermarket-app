@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { Category } from 'src/app/core/models/product/category.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/core/services/product.service';
-import ProductModel from 'src/app/core/models/product/product.model';
 
 @Component({
   selector: 'app-create',
@@ -34,10 +32,8 @@ export class CreateComponent implements OnInit {
   }
 
   create() {
-    // this.spinner.show();
     const { name, categoryName, price, image } = this.createProductForm.value;
     const newProduct = { name, categoryName, price, image };
     this.productService.createProduct(newProduct);
-    // this.spinner.hide();
   }
 }

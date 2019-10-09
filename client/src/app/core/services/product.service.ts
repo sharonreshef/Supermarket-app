@@ -7,11 +7,8 @@ import {
   CreateProduct,
   EditProduct
 } from '../store/product/product.actions';
-// import CreateBookModel from "../models/book/create-book";
 import { Router } from '@angular/router';
-// import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from 'ngx-spinner';
-import { map } from 'rxjs/operators';
 import ProductModel from '../models/product/product.model';
 
 @Injectable({
@@ -24,7 +21,6 @@ export class ProductService {
     private http: HttpClient,
     private store: Store<AppState>,
     private router: Router,
-    // private toastr: ToastrService,
     private spinner: NgxSpinnerService
   ) {}
 
@@ -40,7 +36,6 @@ export class ProductService {
       this.store.dispatch(new CreateProduct(product));
       this.spinner.hide();
       this.router.navigate(['/products']);
-      // this.toastr.success('Product added successfully.')
     });
   }
 

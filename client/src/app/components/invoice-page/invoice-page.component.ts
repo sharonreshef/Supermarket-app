@@ -22,7 +22,6 @@ export class InvoicePageComponent implements OnInit {
   }
 
   download() {
-    console.log('converting');
     var doc = new jsPDF();
     var col = ['product name', 'price', 'quantity', 'total price'];
     var rows = [];
@@ -49,7 +48,6 @@ export class InvoicePageComponent implements OnInit {
         .pipe(select(state => state.order.userOrders))
         .subscribe(orders => {
           this.order = orders[orders.length - 1];
-          console.log(this.order);
         })
     );
   }

@@ -33,11 +33,9 @@ export class RegisterComponent implements OnInit {
       alert('must be same password');
     } else {
       this.next = true;
-      console.log(this.next);
     }
   }
   onSubmit2() {
-    console.log(this.registerForm2.value);
     this.registerForm2Values = this.registerForm2.value;
 
     this.authService.createUser(

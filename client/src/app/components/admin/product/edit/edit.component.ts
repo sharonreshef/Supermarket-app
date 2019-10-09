@@ -24,7 +24,7 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private store: Store<AppState> // private toastr: ToastrService
+    private store: Store<AppState>
   ) {
     this._id = this.route.snapshot.params['id'];
     this.categoryService.getCategoriesFromServer().subscribe(categories => {
@@ -60,6 +60,5 @@ export class EditComponent implements OnInit {
   edit() {
     const product = Object.assign({}, this.product, this.editProductForm.value);
     this.productService.editProduct(product);
-    // this.toastr.success('Book Edited!');
   }
 }

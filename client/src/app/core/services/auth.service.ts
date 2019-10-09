@@ -14,7 +14,6 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private store: Store<AppState>,
-    // private tostr: ToastrService,
     private router: Router
   ) {}
 
@@ -51,11 +50,9 @@ export class AuthService {
       firstName: firstName,
       lastName: lastName
     };
-    console.log(body);
     this.http
       .post('http://localhost:3000/customers', body)
       .subscribe(response => {
-        console.log(response);
         this.router.navigate(['']);
       });
   }
@@ -101,7 +98,6 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.store.dispatch(new ClearCart());
-    // this.tostr.success('You ware logged out!');
     this.router.navigate(['']);
   }
 }
