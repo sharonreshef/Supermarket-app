@@ -2,7 +2,8 @@
   "name": "supermarket",
   "version": "0.0.0",
   "engines": {
-    "node": "10.16.1"
+    "node": "10.16.1",
+    "npm": "6.9.0"
   },
   "private": true,
   "main": "app.js",
@@ -24,7 +25,10 @@
     "express-validator": "^6.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.9",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "@angular/cli": "~8.1.1",
+    "@angular/compiler-cli": "~8.1.1",
+    "typescript": "~3.4.3"
   },
   "devDependencies": {
     "concurrently": "^4.1.2",
