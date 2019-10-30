@@ -30,11 +30,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Serve static asset in production
 if (process.env.NODE_ENV === 'production') {
   // set static folder
-  app.use(express.static('client/dist'));
+  var distDir = __dirname + '/dist/';
+  app.use(express.static(distDir));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
-  });
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
+  // });
 }
 
 app.use('/', indexRouter);
