@@ -32,6 +32,7 @@
     "typescript": "~3.4.3"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.803.19",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.1"
   }
