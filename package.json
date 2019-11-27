@@ -16,6 +16,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && ng build --prefix client"
   },
   "dependencies": {
+    "@angular/compiler-cli": "~8.1.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.2",
     "cookie-parser": "~1.4.4",
@@ -27,12 +28,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.9",
     "morgan": "~1.9.1",
-    "@angular/cli": "~8.1.1",
-    "@angular/compiler-cli": "~8.1.1",
     "typescript": "~3.4.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.19",
+    "@angular/cli": "^8.3.19",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.1"
   }
