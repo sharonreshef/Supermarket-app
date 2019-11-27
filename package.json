@@ -17,7 +17,7 @@
   "dependencies": {
     "@angular-devkit/build-angular": "^0.803.19",
     "@angular/animations": "^5.2.0",
-    "@angular/cli": "^5.2.0",
+    "@angular/cli": "1.6.8",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/compiler-cli": "^5.2.0",
@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.19",
-    "@angular/cli": "^8.3.19",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.1"
   }
