@@ -48,7 +48,7 @@
     "@angular/cli": "~8.1.1",
     "@angular/compiler-cli": "~8.1.1",
     "typescript": "~3.4.3",
-    "@angular-devkit/build-angular": "~0.801.3",
+    "@angular-devkit/build-angular": "~15.0.4",
     "@angular/language-service": "~8.1.1",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
